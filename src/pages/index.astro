@@ -15,6 +15,7 @@ const projects = (await getCollection('projects')).sort(sortItemsByDateDesc);
 const featuredProjects = projects.filter(({ data }) => data.isFeatured);
 ---
 
+<div id="homepage">
 <BaseLayout description={siteConfig.description} image={siteConfig.image}>
     <Hero />
     <!-- {
@@ -44,3 +45,5 @@ const featuredProjects = projects.filter(({ data }) => data.isFeatured);
         )
     }
 </BaseLayout>
+
+</div>
