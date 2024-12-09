@@ -83,7 +83,7 @@ const siteConfig: SiteConfig = {
         }
     ],
     hero: {
-        title: 'Welcome to My Portfolio 🚀',
+        title: 'Welcome to My Space 🚀',
         text: "Hi! I'm **Manith**, Computer Engineering undergraduate student with a strong foundation in programming, data structures and algorithms. Skilled in languages such as Python, Java and C++. Familiarity with web development and databases. Strong analytical and problem-solving skills with a passion for staying current with the latest technology trends. Seeking opportunities to apply my skills and gain hands-on experience in the field. Willing to learn and grow as a Machine Learning Engineer to become a valuable asset to any organization.",
         image: {
             src: '/hero.jpeg',
