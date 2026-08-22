@@ -1,9 +1,51 @@
+# https://manithj.github.io/robots.txt
+
 User-agent: *
+Allow: /
+
+# ---------------------------------------------------------------------------
+# AI / answer-engine crawlers, allowed explicitly.
+# The wildcard above already permits these; naming them is an unambiguous
+# opt-in signal, and several engines check for their own user-agent first.
+# ---------------------------------------------------------------------------
+
+# OpenAI - GPTBot trains, OAI-SearchBot indexes for ChatGPT search,
+# ChatGPT-User fetches live when a user asks.
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+Allow: /
+
+# Google AI surfaces (Gemini, AI Overviews) - separate from Googlebot
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Allow: /
+
+# Apple Intelligence, Microsoft Copilot, Meta AI, Common Crawl,
+# Amazon, DuckDuckGo assistant, You.com
+User-agent: Applebot-Extended
+User-agent: Applebot
+User-agent: bingbot
+User-agent: CCBot
+User-agent: Meta-ExternalAgent
+User-agent: Amazonbot
+User-agent: DuckAssistBot
+User-agent: YouBot
 Allow: /
 
 Sitemap: https://manithj.github.io/sitemap.xml
 Host: https://manithj.github.io
 
-# AI / answer-engine policy and machine-readable summary
-# LLMs: https://manithj.github.io/llms.txt
+# Machine-readable summary and AI usage policy
+# LLMs:      https://manithj.github.io/llms.txt
 # AI policy: https://manithj.github.io/ai.txt

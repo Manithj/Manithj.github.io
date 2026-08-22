@@ -2,6 +2,9 @@
 
 > Manith Marapperuma is an AI researcher and machine learning engineer based in Colombo, Sri Lanka, and Lead Research Engineer at Neuralgap. He works on molecular dynamics simulation and engineering of viral capsids, agentic explainability, and quantum research on molecules, building on a background in computer vision, knowledge graphs and ontology-driven reasoning. His research thread is explainability: AI systems whose reasoning can be inspected rather than taken on trust.
 
+Last updated: 2026-08-22
+Canonical: https://manithj.github.io/
+
 ## Profile
 - Name: Manith Marapperuma
 - Role: Lead Research Engineer at Neuralgap
