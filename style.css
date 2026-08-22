@@ -120,8 +120,21 @@ hr {
 
 @media (max-width: 620px) {
   .nav-name { display: none; }
-  .nav-links { margin-left: 0; gap: 12px; }
-  .nav-links a { font-size: 13px; }
+  /* Seven links will not fit a phone width at a readable size, so keep them on
+     one swipeable row instead of wrapping and orphaning the last one. */
+  .nav-links {
+    margin-left: 0;
+    flex: 1;
+    min-width: 0;
+    gap: 14px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a { font-size: 13px; white-space: nowrap; }
 }
 
 /* ---------- header ---------- */
