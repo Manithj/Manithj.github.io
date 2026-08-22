@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://manithj.github.io/sitemap.xml
+Host: https://manithj.github.io
+
+# AI / answer-engine policy and machine-readable summary
+# LLMs: https://manithj.github.io/llms.txt
+# AI policy: https://manithj.github.io/ai.txt

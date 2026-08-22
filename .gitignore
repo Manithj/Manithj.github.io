@@ -1,0 +1,16 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# OS / editor
+.DS_Store
+*.swp
+
+# CV LaTeX source is NOT published: it contains the phone number and referee
+# contact details in plaintext, and every file in this repo is world-readable.
+# Keep it outside the repo; only the redacted PDF in assets/ is published.
+/*.tex
