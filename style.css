@@ -95,11 +95,18 @@ hr {
   display: flex;
   gap: 15px;
   margin-left: auto;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  min-width: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
 }
+.nav-links::-webkit-scrollbar { display: none; }
 .nav-links a {
   color: var(--muted);
   font-size: 14px;
+  white-space: nowrap;
 }
 .nav-links a:hover { color: var(--accent); text-decoration: none; }
 
@@ -122,19 +129,8 @@ hr {
   .nav-name { display: none; }
   /* Seven links will not fit a phone width at a readable size, so keep them on
      one swipeable row instead of wrapping and orphaning the last one. */
-  .nav-links {
-    margin-left: 0;
-    flex: 1;
-    min-width: 0;
-    gap: 14px;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    -webkit-overflow-scrolling: touch;
-  }
-  .nav-links::-webkit-scrollbar { display: none; }
-  .nav-links a { font-size: 13px; white-space: nowrap; }
+  .nav-links { margin-left: 0; flex: 1; gap: 14px; }
+  .nav-links a { font-size: 13px; }
 }
 
 /* ---------- header ---------- */
