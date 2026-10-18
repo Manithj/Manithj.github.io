@@ -12,7 +12,7 @@ Canonical: https://manithj.github.io/
 - Email: manithjm@gmail.com
 - Website: https://manithj.github.io
 - ORCID: https://orcid.org/0009-0006-7142-5884
-- Education: BSc (Hons) Computer Engineering, General Sir John Kotelawala Defence University, Sri Lanka (2022-2025). Dean's List semesters 7 and 8; final year research project graded A.
+- Education: BSc (Hons) Computer Engineering, General Sir John Kotelawala Defence University, Sri Lanka (2022-2025). Vice Chancellor's List semesters 7 and 8; final year research project graded A.
 
 ## Research interests
 - Computer vision
@@ -37,6 +37,7 @@ Canonical: https://manithj.github.io/
 - [LinkedIn](https://www.linkedin.com/in/manithj/)
 - [Google Scholar](https://scholar.google.com/citations?user=Sa3m8noAAAAJ)
 - [ORCID](https://orcid.org/0009-0006-7142-5884)
+- [ResearchGate](https://www.researchgate.net/profile/Manith-Marapperuma/research)
 - [Hugging Face](https://huggingface.co/AI-Manith)
 - [Medium](https://manithj.medium.com/)
 
@@ -46,6 +47,7 @@ Canonical: https://manithj.github.io/
 - [Computer Vision for Object Detection in Assistive Technologies: A Comparative Review](https://ir.kdu.ac.lk/handle/345/8254) - Marapperuma, M., Vidanage, K. Faculty of Computing, General Sir John Kotelawala Defence University.
 
 ## Research projects
+- [Bushfire UAV MARL, multi-drone fire search and suppression](https://manithj.github.io/bushfire-uav-marl/) (PyTorch, PettingZoo, FastAPI, React, MapLibre, Cesium): simulation in which a team of autonomous drones learns to search Victorian bushland, spot fires and put them out, trained with DQN, MAPPO and MADDPG alongside a hand-written greedy expert; in an initial two-scene smoke test MAPPO and MADDPG put out 4 of 4 fires on both scenes, matching the expert.
 - Ontology-Based Vision Framework for Fruit Disease Detection (OWL, Pellet Reasoner, OpenCV, Python): hybrid framework pairing a semantic knowledge base with a real-time vision pipeline; a phytopathological ontology in OWL codifying disease symptoms, HSV spectral phenotypes and morphology; 85.0% F1 on MangoFruitDDS, competitive with VGG16-class models while remaining interpretable.
 - [OntoGraph, drug interaction analysis](https://huggingface.co/spaces/CSAT/OntoGraph) (LangGraph, semantic web ontologies, open-source LLMs): graph-based biomedical reasoning system identifying and explaining potential drug-drug interactions.
 - [SkinDet, skin oiliness detection](https://huggingface.co/spaces/AI-Manith/SkinDet-vit) (Vision Transformers, PyTorch, Streamlit): fine-tuned ViT reaching 92% test accuracy for oiliness classification from facial images.
