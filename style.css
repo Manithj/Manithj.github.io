@@ -344,6 +344,7 @@ p { margin: 0 0 14px 0; }
   color: inherit;
   transition: border-color 0.15s, transform 0.15s;
 }
+.post-card + .post-card { margin-top: 14px; }
 .post-card:hover {
   text-decoration: none;
   border-color: var(--rule);

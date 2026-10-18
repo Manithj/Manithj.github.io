@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#4b3f72"/>
+  <g transform="rotate(-4 200 200)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700" text-anchor="middle" fill="#4a3f00">
+    <rect x="70" y="80" width="260" height="240" rx="4" fill="#fff6c7"/>
+    <text x="200" y="190" font-size="44">How might</text>
+    <text x="200" y="245" font-size="44">we&#8230;?</text>
+  </g>
+</svg>

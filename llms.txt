@@ -2,7 +2,7 @@
 
 > Manith Marapperuma is an AI researcher and machine learning engineer based in Colombo, Sri Lanka, and Lead Research Engineer at Neuralgap. He works on molecular dynamics simulation and engineering of viral capsids, agentic explainability, and quantum research on molecules, building on a background in computer vision, knowledge graphs and ontology-driven reasoning. His research thread is explainability: AI systems whose reasoning can be inspected rather than taken on trust.
 
-Last updated: 2026-08-22
+Last updated: 2026-10-18
 Canonical: https://manithj.github.io/
 
 ## Profile
@@ -52,6 +52,7 @@ Canonical: https://manithj.github.io/
 - [Gemma-2B fine-tuned for English-Sinhala](https://huggingface.co/AI-Manith/manith-gemma-sinhala-gpt) (Hugging Face, PyTorch, LoRA/QLoRA, PEFT): instruction-tuned translation model trained within a single-GPU memory budget.
 
 ## Writing
+- [From research area to research question: problem statements with "How Might We"](https://manithj.github.io/writing/hmw-problem-statements/) (18 Oct 2026): a guide for computer engineering final year students on forming a research problem statement with How Might We (HMW) questions, from research area to gap, problem statement, research questions, aim, objectives and scope.
 - [Demystifying Project AlphaFold - Where AI Meets Biology](https://medium.com/@manithj/demystifying-project-alphafold-where-artificial-intelligence-meets-biology-e7f13ba1e655) (Medium, 9 May 2024): what bioinformatics is, how AlphaFold gets from an amino acid sequence to a folded structure, and what changed in AlphaFold 3.
 
 ## Awards

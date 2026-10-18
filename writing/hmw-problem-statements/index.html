@@ -1,0 +1,1740 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research problem statements with How Might We (HMW) · Final year projects · Manith Marapperuma</title>
+<meta name="description" content="A friendly guide for computer engineering final year students on forming a research problem statement with How Might We (HMW) questions: from research area to gap, problem statement, research questions, aim, objectives and scope.">
+<meta name="author" content="Manith Marapperuma">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16161a" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Manith Marapperuma">
+<meta property="og:title" content="From research area to research question: HMW for final year projects">
+<meta property="og:description" content="Turn a broad research area into a defensible problem statement, HMW, research questions and objectives, with edge AI, IoT, networking and healthcare examples.">
+<meta property="og:url" content="https://manithj.github.io/writing/hmw-problem-statements/">
+<link rel="canonical" href="https://manithj.github.io/writing/hmw-problem-statements/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧬</text></svg>">
+
+<!-- Same pre-paint theme script as manithj.github.io: reads localStorage 'theme' and pins data-theme. -->
+<script>
+  try {
+    var t = localStorage.getItem('theme');
+    if (t) document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+
+<style>
+/* ======================================================================
+   Palette: copied from manithj.github.io/style.css, then extended with a
+   few semantic colours for the colour-coded HMW parts and good/bad cards.
+   Dark mode works exactly like the main site: OS preference by default,
+   overridden by :root[data-theme="light" | "dark"].
+   ====================================================================== */
+:root {
+  --bg: #ffffff;
+  --fg: #333333;
+  --muted: #999999;
+  --faint: #bbbbbb;
+  --rule: #cfcfcf;
+  --hair: #eeeeee;
+  --link: #0645ad;
+  --accent: #4b3f72;
+  --nav-bg: rgba(255, 255, 255, 0.85);
+
+  /* blog extensions */
+  --sub: #6b6b6b;          /* readable secondary text (site --muted is too light for body copy) */
+  --card: #fafafa;
+  --mix: 10%;
+  --c-hmw: #4b3f72;
+  --c-action: #1d4ed8;
+  --c-user: #b45309;
+  --c-goal: #15803d;
+  --c-ctx: #be185d;
+  --good: #15803d;
+  --bad: #b91c1c;
+  --warn: #a16207;
+  --sticky: #fff6c7;
+  --sticky-fg: #4a3f00;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #16161a;
+    --fg: #d6d6da;
+    --muted: #8b8b93;
+    --faint: #6d6d75;
+    --rule: #3a3a42;
+    --hair: #2a2a31;
+    --link: #8ab4f8;
+    --accent: #b5a8e0;
+    --nav-bg: rgba(22, 22, 26, 0.85);
+
+    --sub: #a6a6ae;
+    --card: #1c1c21;
+    --mix: 16%;
+    --c-hmw: #b5a8e0;
+    --c-action: #93c5fd;
+    --c-user: #fbbf24;
+    --c-goal: #86efac;
+    --c-ctx: #f9a8d4;
+    --good: #86efac;
+    --bad: #fca5a5;
+    --warn: #fcd34d;
+    --sticky: #3a3520;
+    --sticky-fg: #f3e7b0;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16161a;
+  --fg: #d6d6da;
+  --muted: #8b8b93;
+  --faint: #6d6d75;
+  --rule: #3a3a42;
+  --hair: #2a2a31;
+  --link: #8ab4f8;
+  --accent: #b5a8e0;
+  --nav-bg: rgba(22, 22, 26, 0.85);
+
+  --sub: #a6a6ae;
+  --card: #1c1c21;
+  --mix: 16%;
+  --c-hmw: #b5a8e0;
+  --c-action: #93c5fd;
+  --c-user: #fbbf24;
+  --c-goal: #86efac;
+  --c-ctx: #f9a8d4;
+  --good: #86efac;
+  --bad: #fca5a5;
+  --warn: #fcd34d;
+  --sticky: #3a3520;
+  --sticky-fg: #f3e7b0;
+}
+
+/* ---------- base (same as main site) ---------- */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; padding: 0;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
+}
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 820px; margin: 0 auto; padding: 0 20px; }
+hr {
+  height: 1px; border: 0; padding: 0; margin: 34px 0;
+  background-image: linear-gradient(to right, rgba(128,128,128,0), var(--rule), rgba(128,128,128,0));
+}
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  padding: 10px 16px; background: var(--bg); color: var(--link);
+  border: 1px solid var(--rule); border-radius: 0 0 6px 0;
+}
+.skip-link:focus { left: 0; }
+p { margin: 0 0 14px 0; }
+strong { font-weight: 600; }
+
+/* ---------- nav (same as main site) ---------- */
+#nav {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--nav-bg);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--hair);
+}
+.nav-inner { max-width: 820px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; gap: 16px; }
+.nav-name { font-weight: 600; color: var(--fg); white-space: nowrap; }
+.nav-name:hover { text-decoration: none; color: var(--accent); }
+.nav-links {
+  display: flex; gap: 15px; margin-left: auto; flex-wrap: nowrap; overflow-x: auto; min-width: 0;
+  scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-links a { color: var(--muted); font-size: 14px; white-space: nowrap; }
+.nav-links a:hover { color: var(--accent); text-decoration: none; }
+#theme-toggle {
+  border: 1px solid var(--rule); background: transparent; color: var(--muted);
+  border-radius: 50%; width: 28px; height: 28px; cursor: pointer;
+  font-size: 14px; line-height: 1; flex-shrink: 0; padding: 0;
+}
+#theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+@media (max-width: 620px) {
+  .nav-name { display: none; }
+  .nav-links { margin-left: 0; flex: 1; gap: 14px; }
+  .nav-links a { font-size: 13px; }
+}
+
+/* ---------- post header ---------- */
+header.container { margin-top: 36px; }
+.post-meta { font-size: 12px; color: var(--muted); letter-spacing: 0.3px; }
+h1 { font-size: 34px; font-weight: 600; letter-spacing: -0.4px; margin: 6px 0 0 0; line-height: 1.15; }
+.tagline { font-style: italic; color: var(--muted); font-size: 17px; margin: 10px 0 16px 0; }
+.byline { display: flex; align-items: center; gap: 12px; }
+.byline img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: block; background: var(--hair); }
+.byline .who { font-weight: 600; font-size: 15px; }
+.byline .who a { color: var(--fg); }
+.byline .who a:hover { color: var(--accent); text-decoration: none; }
+.byline .role { font-size: 13px; color: var(--muted); }
+.post-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
+.post-tags span { font-size: 11.5px; color: var(--muted); border: 1px solid var(--hair); border-radius: 999px; padding: 1px 8px; }
+@media (max-width: 560px) { h1 { font-size: 27px; } }
+
+/* ---------- section titles ---------- */
+section { scroll-margin-top: 60px; }
+.ctitle {
+  font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.4px;
+  color: var(--accent); margin: 0 0 6px 0;
+}
+h2 { font-size: 24px; font-weight: 600; letter-spacing: -0.2px; line-height: 1.25; margin: 0 0 16px 0; }
+h3 { font-size: 16.5px; font-weight: 600; margin: 26px 0 8px 0; color: var(--fg); }
+.lede { font-size: 17.5px; }
+.sub { color: var(--sub); }
+.small { font-size: 14px; }
+ul.tight, ol.tight { margin: 0 0 14px 0; padding-left: 20px; }
+ul.tight li, ol.tight li { margin-bottom: 5px; }
+
+/* ---------- TOC (styled like the site's post-card) ---------- */
+.toc { border: 1px solid var(--hair); border-radius: 8px; padding: 14px 18px; margin-top: 26px; }
+.toc-title { font-size: 12px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); font-weight: 600; margin-bottom: 6px; }
+.toc ol { margin: 0; padding-left: 22px; columns: 2; column-gap: 32px; font-size: 14.5px; }
+.toc li { margin-bottom: 3px; break-inside: avoid; }
+@media (max-width: 560px) { .toc ol { columns: 1; } }
+
+/* ---------- generic card + callouts ---------- */
+.card { border: 1px solid var(--hair); border-radius: 8px; padding: 14px 16px; background: var(--card); }
+.callout {
+  border-left: 3px solid var(--accent); padding: 10px 14px; margin: 18px 0;
+  background: color-mix(in srgb, var(--accent) var(--mix), transparent); border-radius: 0 8px 8px 0;
+}
+.callout .label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; color: var(--accent); display: block; margin-bottom: 2px; }
+.callout p:last-child { margin-bottom: 0; }
+.figure { margin: 22px 0 26px 0; }
+.figcap { font-size: 13px; color: var(--muted); text-align: center; margin-top: 8px; font-style: italic; }
+
+/* ---------- colour-coded HMW parts ---------- */
+.p { padding: 1px 6px; border-radius: 5px; font-weight: 600; white-space: normal;
+     -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.p-hmw    { color: var(--c-hmw);    background: color-mix(in srgb, var(--c-hmw) var(--mix), transparent); }
+.p-action { color: var(--c-action); background: color-mix(in srgb, var(--c-action) var(--mix), transparent); }
+.p-user   { color: var(--c-user);   background: color-mix(in srgb, var(--c-user) var(--mix), transparent); }
+.p-goal   { color: var(--c-goal);   background: color-mix(in srgb, var(--c-goal) var(--mix), transparent); }
+.p-ctx    { color: var(--c-ctx);    background: color-mix(in srgb, var(--c-ctx) var(--mix), transparent); }
+.hmw-line { font-size: 19px; line-height: 2.1; margin: 0; }
+@media (max-width: 560px) { .hmw-line { font-size: 16.5px; line-height: 2; } .anatomy { padding: 14px 12px 10px; } }
+
+/* ---------- flow diagrams (pure CSS, stack on mobile) ---------- */
+.flow { display: flex; align-items: stretch; gap: 0; margin: 10px 0; }
+.flow .node {
+  flex: 1 1 0; min-width: 0; border: 1px solid var(--rule); border-radius: 8px; padding: 10px 10px;
+  background: var(--card); text-align: center; font-size: 14px; display: flex; flex-direction: column; justify-content: center;
+}
+.flow .node b { display: block; font-size: 14.5px; }
+.flow .node span { color: var(--sub); font-size: 12.5px; line-height: 1.35; margin-top: 3px; }
+.flow .arr { flex: 0 0 26px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 18px; }
+.flow .arr::before { content: "→"; }
+.flow.bad .node { border-color: color-mix(in srgb, var(--bad) 45%, var(--rule)); }
+.flow.bad .node.end { background: color-mix(in srgb, var(--bad) var(--mix), var(--card)); color: var(--bad); }
+.flow.good .node { border-color: color-mix(in srgb, var(--good) 45%, var(--rule)); }
+.flow.good .node.end { background: color-mix(in srgb, var(--good) var(--mix), var(--card)); color: var(--good); }
+.flow-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin: 16px 0 4px 0; }
+.flow-label.bad { color: var(--bad); } .flow-label.good { color: var(--good); }
+@media (max-width: 620px) {
+  .flow { flex-direction: column; }
+  .flow .arr { flex-basis: 22px; }
+  .flow .arr::before { content: "↓"; }
+}
+
+/* design thinking stages */
+.dt { display: flex; gap: 0; align-items: stretch; margin-top: 8px; }
+.dt .stage {
+  flex: 1 1 0; min-width: 0; text-align: center; border: 1px solid var(--rule); border-radius: 10px;
+  padding: 12px 6px 10px; background: var(--card); position: relative;
+}
+.dt .stage .num { font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+.dt .stage .nm { font-weight: 600; font-size: 15px; }
+.dt .stage .ds { font-size: 12.5px; color: var(--sub); line-height: 1.35; margin-top: 2px; }
+.dt .stage.hot {
+  border: 2px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) var(--mix), var(--card));
+}
+.dt .stage.hot .nm { color: var(--accent); }
+.dt .badge {
+  position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+  background: var(--accent); color: var(--bg); font-size: 11px; font-weight: 700; letter-spacing: .5px;
+  padding: 1px 8px; border-radius: 999px; white-space: nowrap;
+}
+.dt .arr { flex: 0 0 22px; display: flex; align-items: center; justify-content: center; color: var(--muted); }
+.dt .arr::before { content: "→"; }
+.loop {
+  margin: 8px 11% 0; border: 1.5px dashed var(--rule); border-top: 0; height: 18px; border-radius: 0 0 14px 14px;
+  position: relative;
+}
+.loop span {
+  position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%);
+  background: var(--bg); padding: 0 8px; font-size: 12px; color: var(--muted); white-space: nowrap;
+}
+@media (max-width: 620px) {
+  .dt { flex-direction: column; }
+  .dt .arr { flex-basis: 20px; }
+  .dt .arr::before { content: "↓"; }
+  .dt .stage { padding: 12px 10px; }
+  .loop { display: none; }
+}
+
+/* double diamond svg */
+.dd { width: 100%; height: auto; display: block; }
+.dd-v { display: none; max-width: 380px; margin: 0 auto; }
+@media (max-width: 620px) { .dd-h { display: none; } .dd-v { display: block; } }
+.svg-fg { fill: var(--fg); }
+.svg-sub { fill: var(--sub); }
+.svg-muted { fill: var(--muted); }
+.svg-line { stroke: var(--rule); fill: none; }
+.svg-accent-line { stroke: var(--accent); fill: none; }
+.svg-tint { fill: color-mix(in srgb, var(--accent) 6%, var(--bg)); stroke: var(--rule); }
+.svg-tint-hot { fill: color-mix(in srgb, var(--accent) 20%, var(--bg)); stroke: var(--accent); }
+.svg-pill { fill: var(--accent); }
+.svg-pill-text { fill: var(--bg); font-weight: 700; }
+.svg-good { fill: var(--good); }
+.svg-dot { fill: var(--card); stroke: var(--rule); }
+
+/* translation table */
+.xlate { display: grid; grid-template-columns: 1fr 26px 1fr; gap: 8px 0; align-items: stretch; margin: 12px 0 6px; }
+.xlate .h { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 600; padding: 0 4px; }
+.xlate .c { border: 1px solid var(--hair); background: var(--card); border-radius: 8px; padding: 8px 12px; font-size: 14.5px; }
+.xlate .c small { display: block; color: var(--sub); font-size: 12.5px; }
+.xlate .eq { display: flex; align-items: center; justify-content: center; color: var(--muted); }
+@media (max-width: 560px) { .xlate .h { font-size: 11px; } .xlate .c { padding: 8px 10px; font-size: 14px; } }
+
+/* three words cards */
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 12px 0; }
+.grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 12px 0; }
+@media (max-width: 620px) { .grid3, .grid2 { grid-template-columns: 1fr; } }
+.word { border: 1px solid var(--hair); border-radius: 8px; padding: 12px 14px; }
+.word .w { font-size: 22px; font-weight: 700; color: var(--accent); line-height: 1.1; }
+.word p { font-size: 14.5px; margin: 6px 0 0 0; }
+
+/* anatomy */
+.anatomy { border: 1px solid var(--hair); border-radius: 10px; padding: 18px 18px 12px; background: var(--card); }
+.parts { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 16px; }
+.part { border-radius: 8px; padding: 9px 10px; border-top: 4px solid; background: var(--bg); border-left: 1px solid var(--hair); border-right: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+.part .t { font-weight: 700; font-size: 13.5px; }
+.part .q { font-size: 12.5px; color: var(--sub); line-height: 1.35; margin-top: 3px; }
+.part.hmw { border-top-color: var(--c-hmw); } .part.hmw .t { color: var(--c-hmw); }
+.part.action { border-top-color: var(--c-action); } .part.action .t { color: var(--c-action); }
+.part.user { border-top-color: var(--c-user); } .part.user .t { color: var(--c-user); }
+.part.goal { border-top-color: var(--c-goal); } .part.goal .t { color: var(--c-goal); }
+.part.ctx { border-top-color: var(--c-ctx); } .part.ctx .t { color: var(--c-ctx); }
+.parts.four { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 700px) { .parts, .parts.four { grid-template-columns: 1fr 1fr; } }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 14px; }
+.chip { font-size: 13px; border: 1px solid var(--hair); border-radius: 999px; padding: 2px 10px; background: var(--card); }
+.chip.ok { border-color: color-mix(in srgb, var(--good) 50%, var(--hair)); color: var(--good); }
+.chip.no { border-color: color-mix(in srgb, var(--bad) 50%, var(--hair)); color: var(--bad); }
+.examples { list-style: none; padding: 0; margin: 12px 0; }
+.examples li { border-left: 3px solid var(--rule); padding: 4px 0 4px 14px; margin-bottom: 10px; line-height: 1.95; }
+.examples .tag { display: block; font-size: 12px; color: var(--muted); line-height: 1.4; text-transform: uppercase; letter-spacing: .8px; }
+
+/* observation -> pov -> hmw */
+.ladder-v { display: flex; flex-direction: column; align-items: stretch; }
+.stagebox { border: 1px solid var(--rule); border-radius: 10px; padding: 12px 16px 14px; background: var(--card); }
+.stagebox .k { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--accent); }
+.stagebox .k em { font-style: normal; color: var(--muted); font-weight: 600; text-transform: none; letter-spacing: 0; }
+.down { text-align: center; color: var(--muted); font-size: 13px; padding: 4px 0; }
+.down::before { content: "↓"; display: block; font-size: 18px; line-height: 1; color: var(--muted); }
+.stickies { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+@media (max-width: 620px) { .stickies { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 380px) { .stickies { grid-template-columns: 1fr; } }
+.sticky {
+  background: var(--sticky); color: var(--sticky-fg); padding: 10px 11px; font-size: 13.5px; line-height: 1.4;
+  border-radius: 3px; box-shadow: 0 1px 0 rgba(0,0,0,.06), 0 3px 8px rgba(0,0,0,.07);
+}
+.sticky:nth-child(odd) { transform: rotate(-0.8deg); } .sticky:nth-child(even) { transform: rotate(0.7deg); }
+.pov-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+@media (max-width: 620px) { .pov-row { grid-template-columns: 1fr; } }
+.pov-cell { border-radius: 8px; padding: 8px 12px; font-size: 14px; }
+.pov-cell .t { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; display: block; }
+.pov-cell.user { background: color-mix(in srgb, var(--c-user) var(--mix), transparent); } .pov-cell.user .t { color: var(--c-user); }
+.pov-cell.need { background: color-mix(in srgb, var(--c-goal) var(--mix), transparent); } .pov-cell.need .t { color: var(--c-goal); }
+.pov-cell.ins  { background: color-mix(in srgb, var(--c-ctx) var(--mix), transparent); }  .pov-cell.ins .t { color: var(--c-ctx); }
+.formula { font-size: 15.5px; border: 1px dashed var(--rule); border-radius: 8px; padding: 10px 14px; margin: 12px 0; line-height: 2; text-align: center; }
+
+/* goldilocks ladder */
+.gl { display: grid; grid-template-columns: 54px 1fr; gap: 0 14px; margin: 14px 0; }
+.gl-axis { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 4px 0; }
+.gl-axis .bar { position: absolute; top: 26px; bottom: 26px; width: 4px; border-radius: 4px;
+  background: linear-gradient(to bottom, var(--c-ctx), var(--good) 50%, var(--c-user)); opacity: .75; }
+.gl-axis .end { position: relative; z-index: 1; background: var(--bg); font-size: 11px; font-weight: 700; text-align: center; line-height: 1.2; color: var(--sub); padding: 2px 0; }
+.rungs { display: flex; flex-direction: column; gap: 8px; }
+.rung { border: 1px solid var(--hair); border-radius: 8px; padding: 9px 14px; display: grid; grid-template-columns: 128px 1fr; gap: 4px 14px; align-items: start; background: var(--card); }
+.rung .lvl { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .7px; padding-top: 2px; }
+.rung .q { font-size: 15px; }
+.rung .why { grid-column: 2; font-size: 13px; color: var(--sub); }
+.rung.r1 .lvl, .rung.r2 .lvl { color: var(--c-ctx); }
+.rung.r4 .lvl, .rung.r5 .lvl { color: var(--c-user); }
+.rung.r3 { border: 2px solid var(--good); background: color-mix(in srgb, var(--good) var(--mix), var(--card)); padding: 13px 14px; }
+.rung.r3 .lvl { color: var(--good); }
+.rung.r3 .q { font-weight: 600; font-size: 16px; }
+@media (max-width: 620px) {
+  .gl { grid-template-columns: 34px 1fr; gap: 0 8px; }
+  .gl-axis .end { font-size: 10px; }
+  .rung { grid-template-columns: 1fr; }
+  .rung .why { grid-column: 1; }
+}
+
+/* good vs bad */
+.gb { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--hair); border-radius: 10px; overflow: hidden; margin-bottom: 14px; }
+.gb-head { grid-column: 1 / -1; padding: 8px 14px; font-weight: 600; font-size: 14px; border-bottom: 1px solid var(--hair); display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.gb-head .n { color: var(--accent); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+.gb .side { padding: 10px 14px 12px; font-size: 14.5px; }
+.gb .side .t { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; display: block; margin-bottom: 2px; }
+.gb .bad { background: color-mix(in srgb, var(--bad) 7%, transparent); border-right: 1px solid var(--hair); }
+.gb .bad .t { color: var(--bad); }
+.gb .good { background: color-mix(in srgb, var(--good) 7%, transparent); }
+.gb .good .t { color: var(--good); }
+.gb .note { grid-column: 1 / -1; font-size: 13px; color: var(--sub); padding: 8px 14px; border-top: 1px solid var(--hair); }
+@media (max-width: 620px) {
+  .gb { grid-template-columns: 1fr; }
+  .gb .bad { border-right: 0; border-bottom: 1px solid var(--hair); }
+}
+
+/* techniques */
+.pov-hub { border: 2px solid var(--accent); border-radius: 10px; padding: 12px 16px; background: color-mix(in srgb, var(--accent) var(--mix), var(--card)); font-size: 15px; }
+.pov-hub .k { font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+.tech { border: 1px solid var(--hair); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; background: var(--card); }
+.tech .nm { font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+.tech .ic { width: 26px; height: 26px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-size: 14px;
+  background: color-mix(in srgb, var(--accent) var(--mix), transparent); color: var(--accent); flex-shrink: 0; }
+.tech .how { font-size: 13px; color: var(--sub); }
+.tech .ex { font-size: 14.5px; border-left: 3px solid var(--accent); padding-left: 10px; }
+.tech .leads { font-size: 12.5px; color: var(--sub); }
+.tech .leads b { color: var(--fg); font-weight: 600; }
+.dc-wrap { margin: 18px 0 8px; }
+.dc-svg { width: 100%; height: auto; display: block; }
+.dc-caps { display: grid; grid-template-columns: 1fr 1.6fr 1.2fr 1fr; gap: 8px; font-size: 12.5px; color: var(--sub); text-align: center; }
+.dc-caps b { color: var(--fg); display: block; font-size: 13px; }
+
+/* case study timeline (reuses the main site's .entry/.rail/.dot pattern) */
+.entry { display: grid; grid-template-columns: 78px 14px 1fr; align-items: stretch; }
+.timespan { font-size: 13px; text-align: right; padding-right: 12px; padding-top: 1px; color: var(--muted); white-space: nowrap; font-weight: 600; }
+.rail { border-left: 2px solid var(--rule); position: relative; }
+.entry:last-child .rail { border-left-color: transparent; }
+.dot { position: absolute; top: 5px; left: -6px; width: 10px; height: 10px; border-radius: 50%; background-color: var(--rule); border: 2px solid var(--bg); }
+.entry.hot .dot { background: var(--accent); }
+.desc { padding: 0 0 26px 16px; min-width: 0; }
+.entry:last-child .desc { padding-bottom: 0; }
+.desc .role { font-weight: 600; font-size: 16.5px; }
+.desc .where { color: var(--sub); font-size: 14px; margin-bottom: 8px; }
+.desc ul { margin: 6px 0 0 0; padding-left: 18px; }
+.desc li { margin-bottom: 4px; }
+@media (max-width: 560px) {
+  .entry { grid-template-columns: 58px 14px 1fr; }
+  .timespan { font-size: 12px; padding-right: 8px; }
+  .desc { padding-left: 12px; }
+}
+.idea-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.idea { font-size: 13px; border: 1px solid var(--hair); border-radius: 6px; padding: 4px 9px; background: var(--card); }
+.idea.pick { border-color: var(--accent); color: var(--accent); font-weight: 600; background: color-mix(in srgb, var(--accent) var(--mix), var(--card)); }
+.idea.orig { text-decoration: line-through; text-decoration-color: var(--bad); color: var(--sub); }
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+@media (max-width: 620px) { .ba { grid-template-columns: 1fr; } }
+.ba .card .t { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; display: block; margin-bottom: 4px; }
+.ba .before .t { color: var(--bad); } .ba .after .t { color: var(--good); }
+.ba .before { border-color: color-mix(in srgb, var(--bad) 40%, var(--hair)); }
+.ba .after { border-color: color-mix(in srgb, var(--good) 40%, var(--hair)); }
+.ba ul { margin: 6px 0 0; padding-left: 18px; font-size: 14px; }
+
+/* interactive: builder */
+.tool { border: 1px solid var(--rule); border-radius: 10px; padding: 16px; margin: 14px 0 24px; }
+.tool-title { font-weight: 700; font-size: 16px; margin-bottom: 2px; }
+.tool-sub { font-size: 13.5px; color: var(--sub); margin-bottom: 12px; }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+@media (max-width: 620px) { .fields { grid-template-columns: 1fr; } }
+.field label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 3px; }
+.field.action label { color: var(--c-action); } .field.user label { color: var(--c-user); }
+.field.goal label { color: var(--c-goal); } .field.ctx label { color: var(--c-ctx); }
+.field input, .tool select {
+  width: 100%; font: inherit; font-size: 15px; color: var(--fg); background: var(--bg);
+  border: 1px solid var(--rule); border-radius: 6px; padding: 7px 10px;
+}
+.field input:focus, .tool select:focus { outline: 2px solid color-mix(in srgb, var(--accent) 50%, transparent); border-color: var(--accent); }
+.field .hint { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.preview { margin-top: 14px; border-radius: 8px; padding: 12px 14px; background: var(--card); border: 1px dashed var(--rule); }
+.preview .k { font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+.preview .hmw-line { font-size: 18px; }
+.lint { list-style: none; padding: 0; margin: 10px 0 0; font-size: 14px; }
+.lint li { padding: 3px 0 3px 26px; position: relative; }
+.lint li::before { position: absolute; left: 0; top: 3px; width: 18px; text-align: center; font-weight: 700; }
+.lint li.ok::before { content: "✓"; color: var(--good); }
+.lint li.warn::before { content: "!"; color: var(--warn); }
+.lint li.bad::before { content: "✕"; color: var(--bad); }
+.btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; align-items: center; }
+.btn {
+  font: inherit; font-size: 13.5px; color: var(--link); background: transparent; border: 1px solid var(--hair);
+  border-radius: 999px; padding: 4px 12px; cursor: pointer; transition: border-color .15s;
+}
+.btn:hover { border-color: var(--link); }
+.btn.primary { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+.btn.primary:hover { filter: brightness(1.08); }
+.presets { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; font-size: 13.5px; color: var(--sub); }
+.presets select { width: auto; font-size: 14px; padding: 4px 8px; }
+
+/* interactive: quiz */
+.quiz-q { border: 1px solid var(--hair); border-radius: 8px; padding: 12px 14px; margin-bottom: 12px; }
+.quiz-q .stmt { font-size: 16px; font-weight: 600; margin: 2px 0 8px; }
+.quiz-q .n { font-size: 12px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+.opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.opt { font: inherit; font-size: 13.5px; color: var(--fg); background: var(--card); border: 1px solid var(--rule); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.opt:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.opt:disabled { cursor: default; opacity: .55; }
+.opt.right { border-color: var(--good); color: var(--good); opacity: 1; background: color-mix(in srgb, var(--good) var(--mix), var(--card)); font-weight: 600; }
+.opt.wrong { border-color: var(--bad); color: var(--bad); opacity: 1; background: color-mix(in srgb, var(--bad) var(--mix), var(--card)); }
+.reveal { display: none; margin-top: 10px; font-size: 14.5px; border-left: 3px solid var(--good); padding: 4px 0 4px 12px; }
+.reveal.show { display: block; }
+.reveal .fix { display: block; margin-top: 4px; }
+.reveal .fix b { color: var(--good); }
+.score { font-size: 14px; color: var(--sub); }
+
+/* cheat sheet */
+.check { list-style: none; padding: 0; margin: 10px 0; }
+.check li { margin-bottom: 6px; }
+.check label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; font-size: 15px; }
+.check input { margin-top: 4px; accent-color: var(--accent); width: 16px; height: 16px; flex-shrink: 0; }
+.check input:checked + span { color: var(--sub); text-decoration: line-through; text-decoration-color: var(--faint); }
+.progress { height: 6px; background: var(--hair); border-radius: 6px; overflow: hidden; margin: 6px 0 2px; }
+.progress div { height: 100%; width: 0; background: var(--accent); transition: width .2s; }
+.tldr { border: 1px solid var(--hair); border-radius: 8px; padding: 14px 18px; }
+.tldr ol { margin: 6px 0 0; padding-left: 20px; }
+.tldr li { margin-bottom: 6px; }
+.refs { font-size: 14.5px; padding-left: 20px; }
+.refs li { margin-bottom: 8px; }
+.refs .src { color: var(--sub); font-style: italic; }
+
+/* author card + footer (same as site) */
+.author-card { display: flex; gap: 16px; align-items: center; border: 1px solid var(--hair); border-radius: 8px; padding: 14px; }
+.author-card img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; background: var(--hair); flex-shrink: 0; }
+.author-card .nm { font-weight: 600; }
+.author-card .r { font-size: 13.5px; color: var(--sub); }
+.author-card .lk { font-size: 13.5px; margin-top: 4px; display: flex; gap: 14px; flex-wrap: wrap; }
+footer { margin: 40px auto 50px; padding-top: 20px; border-top: 1px solid var(--hair); }
+footer p { font-size: 13px; color: var(--faint); margin: 0; }
+footer a { color: var(--muted); }
+
+
+/* ---------- research additions ---------- */
+.p-gap { color: var(--c-action); background: color-mix(in srgb, var(--c-action) var(--mix), transparent); }
+.funnel { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 14px 0 6px; }
+.funnel .lvl {
+  border: 1px solid var(--rule); border-radius: 8px; padding: 8px 14px; background: var(--card);
+  display: grid; grid-template-columns: 150px 1fr; gap: 12px; align-items: baseline; font-size: 14.5px;
+}
+.funnel .lvl .k { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--sub); }
+.funnel .lvl.hot { border: 2px solid var(--accent); background: color-mix(in srgb, var(--accent) var(--mix), var(--card)); }
+.funnel .lvl.hot .k { color: var(--accent); }
+.funnel .w1 { width: 100%; } .funnel .w2 { width: 94%; } .funnel .w3 { width: 88%; } .funnel .w4 { width: 82%; }
+.funnel .w5 { width: 76%; } .funnel .w6 { width: 70%; } .funnel .w7 { width: 64%; }
+.funnel .dn { color: var(--muted); font-size: 13px; line-height: 1; }
+@media (max-width: 620px) {
+  .funnel .lvl { grid-template-columns: 1fr; gap: 2px; }
+  .funnel .w2, .funnel .w3, .funnel .w4 { width: 96%; } .funnel .w5, .funnel .w6, .funnel .w7 { width: 92%; }
+}
+.outline { border: 1px solid var(--hair); border-radius: 8px; padding: 12px 16px; font-size: 14.5px; }
+.outline .ch { font-weight: 700; margin-bottom: 4px; }
+.outline ol { margin: 0; padding-left: 0; list-style: none; }
+.outline li { padding: 3px 8px; border-radius: 6px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.outline li.hot { background: color-mix(in srgb, var(--accent) var(--mix), transparent); font-weight: 600; }
+.outline li .note { font-size: 12.5px; color: var(--accent); font-weight: 600; }
+.steps4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 12px 0 18px; counter-reset: s; }
+@media (max-width: 700px) { .steps4 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 420px) { .steps4 { grid-template-columns: 1fr; } }
+.step4 { border: 1px solid var(--hair); border-radius: 8px; padding: 10px 12px; background: var(--card); position: relative; }
+.step4 .n { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: var(--bg); font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; }
+.step4 .t { font-weight: 700; font-size: 14.5px; margin: 6px 0 2px; }
+.step4 .d { font-size: 13px; color: var(--sub); line-height: 1.4; }
+.step4 .r { font-size: 13px; margin-top: 6px; border-top: 1px dashed var(--rule); padding-top: 6px; }
+.step4 .r b { color: var(--accent); }
+.ps { line-height: 2; font-size: 15.5px; }
+.rq { border-left: 3px solid var(--c-action); padding: 3px 0 3px 12px; margin: 8px 0; font-size: 14.5px; }
+.rq b { color: var(--c-action); }
+.obj { list-style: none; padding: 0; margin: 6px 0 0; font-size: 14px; }
+.obj li { padding: 5px 0 5px 44px; position: relative; border-bottom: 1px solid var(--hair); }
+.obj li:last-child { border-bottom: 0; }
+.obj li b.o { position: absolute; left: 0; top: 5px; font-size: 12px; color: var(--accent); background: color-mix(in srgb, var(--accent) var(--mix), transparent); border-radius: 5px; padding: 0 6px; }
+.scope3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
+@media (max-width: 620px) { .scope3 { grid-template-columns: 1fr; } }
+.scope3 .card .t { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; display: block; margin-bottom: 4px; }
+.scope3 .in .t { color: var(--good); } .scope3 .out .t { color: var(--bad); } .scope3 .con .t { color: var(--warn); }
+.scope3 ul { margin: 0; padding-left: 18px; font-size: 13.5px; }
+.trace-wrap { margin: 12px 0; }
+table.trace { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+table.trace th { text-align: left; font-size: 11.5px; text-transform: uppercase; letter-spacing: .8px; color: var(--sub); border-bottom: 2px solid var(--rule); padding: 6px 8px; }
+table.trace td { border-bottom: 1px solid var(--hair); padding: 8px; vertical-align: top; }
+table.trace td:first-child { font-weight: 700; color: var(--c-action); white-space: nowrap; }
+@media (max-width: 620px) {
+  table.trace, table.trace tbody, table.trace tr, table.trace td { display: block; width: auto; }
+  table.trace thead { display: none; }
+  table.trace tr { border: 1px solid var(--hair); border-radius: 8px; margin-bottom: 10px; padding: 4px 0; background: var(--card); }
+  table.trace td { border: 0; padding: 4px 12px; }
+  table.trace td::before { content: attr(data-l); display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); font-weight: 700; }
+}
+.outbox { margin-top: 10px; border-top: 1px dashed var(--rule); padding-top: 10px; }
+.outbox .k { margin-top: 8px; }
+.outbox .rq-out { font-size: 15px; margin: 2px 0 6px; }
+.outbox ul { margin: 2px 0 0; padding-left: 18px; font-size: 14px; }
+.pdfpair { font-size: 14.5px; }
+.pdfpair .pb { color: var(--bad); font-weight: 600; }
+.pdfpair .pg { color: var(--good); font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#hook">Skip to content</a>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-name" href="https://manithj.github.io/">Manith Marapperuma</a>
+    <div class="nav-links">
+      <a href="https://manithj.github.io/">home</a>
+      <a href="#define">basics</a>
+      <a href="#anatomy">formula</a>
+      <a href="#pov">steps</a>
+      <a href="#scope">scoping</a>
+      <a href="#techniques">techniques</a>
+      <a href="#case">case study</a>
+      <a href="#try">try it</a>
+      <a href="#cheatsheet">cheat sheet</a>
+    </div>
+    <button id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode"></button>
+  </div>
+</nav>
+
+<header id="top" class="container">
+  <div class="post-meta">Research methods &middot; <time datetime="2026-10-18">18 Oct 2026</time> &middot; 18 min read</div>
+  <h1>From research area to research question: problem statements with &ldquo;How Might We&rdquo;</h1>
+  <p class="tagline">A field guide for computer engineering students forming the problem statement for their final year research project.</p>
+  <div class="byline">
+    <img src="https://manithj.github.io/assets/me.jpg" width="44" height="44" alt="Manith Marapperuma">
+    <div>
+      <div class="who"><a href="https://manithj.github.io/">Manith Marapperuma</a></div>
+      <div class="role">Lead Research Engineer</div>
+    </div>
+  </div>
+  <div class="post-tags">
+    <span>Final year project</span><span>Research design</span><span>Problem statement</span><span>HMW</span>
+  </div>
+
+  <nav class="toc" aria-label="Contents">
+    <div class="toc-title">In this post</div>
+    <ol>
+      <li><a href="#hook">&ldquo;Deep learning for X&rdquo; is not a problem</a></li>
+      <li><a href="#define">Research problem statements &amp; HMW</a></li>
+      <li><a href="#anatomy">The HMW formula</a></li>
+      <li><a href="#pov">Four steps: literature &rarr; HMW &rarr; RQs</a></li>
+      <li><a href="#scope">Scoping: the Goldilocks ladder</a></li>
+      <li><a href="#good-bad">Good vs bad research HMWs</a></li>
+      <li><a href="#techniques">One problem, many HMWs</a></li>
+      <li><a href="#case">Case study: a full research lifecycle</a></li>
+      <li><a href="#try">Try it: builder &amp; quiz</a></li>
+      <li><a href="#cheatsheet">Cheat sheet &amp; references</a></li>
+    </ol>
+  </nav>
+</header>
+
+<main>
+
+<hr>
+
+<!-- ============================ 1. HOOK ============================ -->
+<section id="hook" class="container">
+  <div class="ctitle">01 &middot; The hook</div>
+  <h2>&ldquo;Deep learning for plant disease detection&rdquo; is a topic, not a problem</h2>
+
+  <p class="lede">Week one of final year. Your group submits a proposal titled <em>&ldquo;Plant Disease
+  Detection Using Deep Learning&rdquo;</em>. The plan: download a public dataset, train a CNN, put it on a
+  Raspberry Pi, report the accuracy.</p>
+
+  <p>At the proposal defence, the panel asks three questions: <em>&ldquo;Hundreds of papers already do this, so
+  what is the gap? Who exactly benefits? And how will we know, at the end, whether you succeeded?&rdquo;</em>
+  The room goes quiet.</p>
+
+  <p>This is the most common weakness in final year research proposals. Engineers love tools, so we start from a
+  technique (YOLO, LoRa, blockchain, an LLM) and go looking for somewhere to apply it. The result is a project
+  that works but has no clear <strong>research problem</strong>, no answerable <strong>research question</strong>,
+  and nothing to defend in the viva.</p>
+
+  <div class="figure" role="img" aria-label="Two paths: technique-first ends with 'so what is new?'; problem-first ends with a defensible contribution.">
+    <div class="flow-label bad">Technique-first path</div>
+    <div class="flow bad">
+      <div class="node"><b>Pick a trendy tool</b><span>&ldquo;let&rsquo;s use YOLO&rdquo;</span></div><div class="arr"></div>
+      <div class="node"><b>Find a dataset</b><span>whatever fits the tool</span></div><div class="arr"></div>
+      <div class="node"><b>Build &amp; report accuracy</b><span>a number, no context</span></div><div class="arr"></div>
+      <div class="node end"><b>&ldquo;So what&rsquo;s new?&rdquo;</b><span>weak contribution</span></div>
+    </div>
+    <div class="flow-label good">Problem-first path</div>
+    <div class="flow good">
+      <div class="node"><b>Broad area</b><span>e.g. edge AI in agriculture</span></div><div class="arr"></div>
+      <div class="node"><b>Read &amp; observe</b><span>literature + real stakeholders</span></div><div class="arr"></div>
+      <div class="node"><b>Find the gap</b><span>what is missing or unproven?</span></div><div class="arr"></div>
+      <div class="node"><b>HMW &rarr; RQs</b><span>open question, then precise ones</span></div><div class="arr"></div>
+      <div class="node end"><b>Defensible contribution</b><span>clear aim, measurable objectives</span></div>
+    </div>
+    <div class="figcap">Same interest, very different projects. The difference is how carefully the problem is framed before choosing a method.</div>
+  </div>
+
+  <div class="callout">
+    <span class="label">Think of it this way</span>
+    <p>Your problem statement is the <strong>contract</strong> of your project. It tells your supervisor and examiners
+    what you will find out, for whom, under which conditions, and how they can judge whether you delivered. HMW
+    questions are a simple tool to write that contract well.</p>
+  </div>
+</section>
+
+<hr>
+
+<!-- ============================ 2. DEFINE ============================ -->
+<section id="define" class="container">
+  <div class="ctitle">02 &middot; The basics</div>
+  <h2>What is a research problem statement, and where does HMW fit?</h2>
+
+  <p>A <strong>research problem statement</strong> is a short, evidence-backed description of a specific problem:
+  <em>who</em> is affected, <em>what</em> is wrong or missing, <em>why</em> existing work does not solve it (the
+  <strong>gap</strong>), and <em>why it matters</em>. It does not name your method. If it says &ldquo;using
+  YOLOv8&rdquo; or &ldquo;using blockchain&rdquo;, it is a solution wearing a problem costume.</p>
+
+  <p>A <strong>How Might We (HMW)</strong> statement is a framed, open-ended question that turns that problem into an
+  opportunity. It sits between the problem and your research questions, keeping your options open long enough to
+  pick a good method rather than the first one you thought of.</p>
+
+  <h3>The research funnel</h3>
+  <p>Every good final year project narrows down through these levels. Here is one example going all the way down:</p>
+  <div class="figure funnel" role="img" aria-label="A funnel from research area to topic, gap, problem statement, HMW, research questions, and aim and objectives.">
+    <div class="lvl w1"><span class="k">Research area</span><span>Edge AI for agriculture</span></div>
+    <div class="dn">&darr;</div>
+    <div class="lvl w2"><span class="k">Topic</span><span>Leaf disease detection on mobile devices</span></div>
+    <div class="dn">&darr;</div>
+    <div class="lvl w3"><span class="k">Gap</span><span>Models that score well on lab-style images are rarely tested on photos farmers take in the field</span></div>
+    <div class="dn">&darr;</div>
+    <div class="lvl w4"><span class="k">Problem statement</span><span>Smallholder chilli farmers can&rsquo;t rely on existing tools, because they fail in real field conditions&hellip;</span></div>
+    <div class="dn">&darr;</div>
+    <div class="lvl w5 hot"><span class="k">HMW</span><span>HMW identify chilli leaf disease early and reliably, for smallholder farmers, offline on low-cost phones?</span></div>
+    <div class="dn">&darr;</div>
+    <div class="lvl w6"><span class="k">Research questions</span><span>RQ1, RQ2, RQ3: precise and answerable</span></div>
+    <div class="dn">&darr;</div>
+    <div class="lvl w7"><span class="k">Aim &amp; objectives</span><span>What you will do, measured how, by when</span></div>
+  </div>
+  <div class="figcap">Each level is narrower and more precise than the one above. HMW is the hinge between &ldquo;what&rsquo;s wrong&rdquo; and &ldquo;what we&rsquo;ll investigate&rdquo;.</div>
+
+  <h3>Design thinking, research edition</h3>
+  <p>HMW comes from design thinking. Stanford&rsquo;s d.school popularised a five-mode version, and it maps neatly onto a
+  research project. HMW lives at the hand-off between <strong>Define</strong> and <strong>Ideate</strong>.</p>
+
+  <div class="figure" role="img" aria-label="Design thinking flow mapped to research: Empathise, Define (where HMW lives), Ideate, Prototype, Test, with a loop back.">
+    <div class="dt">
+      <div class="stage"><div class="num">01</div><div class="nm">Empathise</div><div class="ds">literature review + talk to stakeholders</div></div>
+      <div class="arr"></div>
+      <div class="stage hot"><span class="badge">HMW lives here</span><div class="num">02</div><div class="nm">Define</div><div class="ds">gap &rarr; problem statement &rarr; HMW</div></div>
+      <div class="arr"></div>
+      <div class="stage"><div class="num">03</div><div class="nm">Ideate</div><div class="ds">candidate approaches, hypotheses, RQs</div></div>
+      <div class="arr"></div>
+      <div class="stage"><div class="num">04</div><div class="nm">Prototype</div><div class="ds">build the artefact, run pilot experiments</div></div>
+      <div class="arr"></div>
+      <div class="stage"><div class="num">05</div><div class="nm">Test</div><div class="ds">evaluate against a baseline, report</div></div>
+    </div>
+    <div class="loop"><span>&#8634; iterate: results often send you back to refine the problem</span></div>
+    <div class="figcap" style="margin-top:20px">Not a waterfall. Pilot results commonly force you to sharpen the problem statement or the RQs.</div>
+  </div>
+
+  <p>Another popular picture is the UK Design Council&rsquo;s <strong>Double Diamond</strong>: widen your understanding of
+  the problem, narrow it to a clear definition, widen again across possible approaches, then narrow to one you build
+  and evaluate. Your HMW sits right at the pinch point.</p>
+
+  <div class="figure">
+    <svg class="dd dd-h" viewBox="0 0 800 300" role="img" aria-labelledby="ddh-t">
+      <title id="ddh-t">Double Diamond for research: problem space then solution space, with the HMW question at the pinch point</title>
+      <text x="210" y="24" text-anchor="middle" class="svg-sub" font-size="15" font-weight="600" letter-spacing="1.5">PROBLEM SPACE</text>
+      <text x="590" y="24" text-anchor="middle" class="svg-sub" font-size="15" font-weight="600" letter-spacing="1.5">SOLUTION SPACE</text>
+      <polygon points="40,150 210,45 210,255" class="svg-tint" stroke-width="1.5"/>
+      <polygon points="210,45 380,150 210,255" class="svg-tint-hot" stroke-width="2"/>
+      <polygon points="420,150 590,45 590,255" class="svg-tint" stroke-width="1.5"/>
+      <polygon points="590,45 760,150 590,255" class="svg-tint" stroke-width="1.5"/>
+      <text x="150" y="140" text-anchor="middle" class="svg-fg" font-size="16" font-weight="600">Literature</text>
+      <text x="150" y="159" text-anchor="middle" class="svg-fg" font-size="16" font-weight="600">&amp; context</text>
+      <text x="150" y="178" text-anchor="middle" class="svg-sub" font-size="13">diverge</text>
+      <text x="272" y="140" text-anchor="middle" class="svg-fg" font-size="16" font-weight="700">Gap &amp;</text>
+      <text x="272" y="159" text-anchor="middle" class="svg-fg" font-size="16" font-weight="700">problem</text>
+      <text x="272" y="178" text-anchor="middle" class="svg-sub" font-size="13">converge</text>
+      <text x="530" y="140" text-anchor="middle" class="svg-fg" font-size="16" font-weight="600">Candidate</text>
+      <text x="530" y="159" text-anchor="middle" class="svg-fg" font-size="16" font-weight="600">methods</text>
+      <text x="530" y="178" text-anchor="middle" class="svg-sub" font-size="13">diverge</text>
+      <text x="655" y="140" text-anchor="middle" class="svg-fg" font-size="16" font-weight="600">Build &amp;</text>
+      <text x="655" y="159" text-anchor="middle" class="svg-fg" font-size="16" font-weight="600">evaluate</text>
+      <text x="655" y="178" text-anchor="middle" class="svg-sub" font-size="13">converge</text>
+      <rect x="352" y="135" width="96" height="30" rx="15" class="svg-pill"/>
+      <text x="400" y="155" text-anchor="middle" class="svg-pill-text" font-size="15">HMW?</text>
+      <path d="M400 168 L400 230" class="svg-accent-line" stroke-width="1.5" stroke-dasharray="3 4"/>
+      <text x="400" y="250" text-anchor="middle" class="svg-fg" font-size="14" font-weight="600">your How Might We question</text>
+      <text x="400" y="270" text-anchor="middle" class="svg-sub" font-size="13">the bridge from &ldquo;what&rsquo;s missing&rdquo; to &ldquo;what we&rsquo;ll investigate&rdquo;</text>
+    </svg>
+    <svg class="dd dd-v" viewBox="0 0 340 620" role="img" aria-labelledby="ddv-t">
+      <title id="ddv-t">Double Diamond for research, vertical, with the HMW question at the pinch point</title>
+      <text x="170" y="18" text-anchor="middle" class="svg-sub" font-size="13" font-weight="600" letter-spacing="1.5">PROBLEM SPACE</text>
+      <polygon points="170,30 310,150 30,150" class="svg-tint" stroke-width="1.5"/>
+      <polygon points="30,150 310,150 170,270" class="svg-tint-hot" stroke-width="2"/>
+      <text x="170" y="112" text-anchor="middle" class="svg-fg" font-size="16" font-weight="600">Literature &amp; context</text>
+      <text x="170" y="132" text-anchor="middle" class="svg-sub" font-size="13">diverge</text>
+      <text x="170" y="185" text-anchor="middle" class="svg-fg" font-size="16" font-weight="700">Gap &amp; problem</text>
+      <text x="170" y="205" text-anchor="middle" class="svg-sub" font-size="13">converge</text>
+      <rect x="122" y="280" width="96" height="30" rx="15" class="svg-pill"/>
+      <text x="170" y="300" text-anchor="middle" class="svg-pill-text" font-size="15">HMW?</text>
+      <text x="234" y="300" class="svg-sub" font-size="12">your question</text>
+      <polygon points="170,320 310,440 30,440" class="svg-tint" stroke-width="1.5"/>
+      <polygon points="30,440 310,440 170,560" class="svg-tint" stroke-width="1.5"/>
+      <text x="170" y="402" text-anchor="middle" class="svg-fg" font-size="16" font-weight="600">Candidate methods</text>
+      <text x="170" y="422" text-anchor="middle" class="svg-sub" font-size="13">diverge</text>
+      <text x="170" y="474" text-anchor="middle" class="svg-fg" font-size="16" font-weight="600">Build &amp; evaluate</text>
+      <text x="170" y="494" text-anchor="middle" class="svg-sub" font-size="13">converge</text>
+      <text x="170" y="590" text-anchor="middle" class="svg-sub" font-size="13" font-weight="600" letter-spacing="1.5">SOLUTION SPACE</text>
+    </svg>
+    <div class="figcap">The Double Diamond (UK Design Council), relabelled for a research project. Highlighted: where your problem gets defined.</div>
+  </div>
+
+  <h3>Where it shows up in your proposal</h3>
+  <div class="grid2">
+    <div class="outline">
+      <div class="ch">Chapter 1 &middot; Introduction (typical outline)</div>
+      <ol>
+        <li><span>1.1 Background &amp; motivation</span></li>
+        <li class="hot"><span>1.2 Problem statement</span><span class="note">shaped by HMW</span></li>
+        <li class="hot"><span>1.3 Research questions</span><span class="note">derived from HMW</span></li>
+        <li><span>1.4 Aim &amp; objectives</span></li>
+        <li><span>1.5 Scope &amp; limitations</span></li>
+        <li><span>1.6 Significance / contribution</span></li>
+      </ol>
+    </div>
+    <div>
+      <p class="small" style="margin-top:0">The HMW itself often doesn&rsquo;t appear word for word in the final report. It is a
+      <strong>thinking tool</strong>: you use it with your team and supervisor to agree on the right problem, then
+      translate it into the formal problem statement and research questions your faculty template asks for.</p>
+      <p class="small">Why these three words? In Warren Berger&rsquo;s 2012 HBR piece, IDEO&rsquo;s Tim Brown explains:
+      <strong>How</strong> assumes a solution exists, <strong>might</strong> lets ideas work or fail without judgement,
+      and <strong>we</strong> makes it collaborative. That suits a group project with a supervisor very well.</p>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ============================ 3. ANATOMY ============================ -->
+<section id="anatomy" class="container">
+  <div class="ctitle">03 &middot; The formula</div>
+  <h2>Anatomy of a research HMW</h2>
+
+  <p>A useful formula for a great HMW has four parts:</p>
+  <div class="formula" style="font-size:16.5px">
+    <span class="p p-hmw">How might we</span> + <span class="p p-goal">[Action / Goal]</span> +
+    <span class="p p-user">[Target / User]</span> + <span class="p p-ctx">[Challenge / Constraint]</span>
+  </div>
+  <p class="small sub">A shorter form also works: <em>How might we + [desired outcome] + [context]</em>. Either way, the point
+  is to encourage many possible approaches rather than one fixed solution.</p>
+
+  <div class="anatomy figure" style="margin-top:12px">
+    <p class="hmw-line">
+      <span class="p p-hmw">How might we</span>
+      <span class="p p-goal">identify chilli leaf disease early and reliably</span>
+      <span class="p p-user">for smallholder farmers</span>
+      <span class="p p-ctx">using low-cost phones, offline, in real field conditions?</span>
+    </p>
+    <div class="parts four">
+      <div class="part hmw"><div class="t">How might we</div><div class="q">Fixed opener. Optimistic, open, collaborative.</div></div>
+      <div class="part goal"><div class="t">Action / Goal</div><div class="q">The outcome you want to make possible. A verb phrase, not a method.</div></div>
+      <div class="part user"><div class="t">Target / User</div><div class="q">Who benefits or is affected. Be specific.</div></div>
+      <div class="part ctx"><div class="t">Challenge / Constraint</div><div class="q">The real-world condition that makes this hard, and makes it research.</div></div>
+    </div>
+    <div class="figcap">Colour key used throughout this post.</div>
+  </div>
+
+  <p>Notice what is <strong>missing</strong>: no &ldquo;MobileNet&rdquo;, no &ldquo;TensorFlow Lite&rdquo;, no &ldquo;domain
+  adaptation&rdquo;. Those are candidate methods. They belong in your research questions and methodology, not in the HMW.
+  Leaving them out keeps options like better data collection, background segmentation or on-device fine-tuning on the table.</p>
+
+  <div class="callout">
+    <span class="label">In research, the constraint is often the contribution</span>
+    <p>&ldquo;Detect leaf disease&rdquo; is solved in the lab. &ldquo;Detect it <em>offline, on a budget phone, in a muddy
+    field, under harsh sunlight</em>&rdquo; may not be. The challenge/constraint slot is usually where your research gap lives.</p>
+  </div>
+
+  <h3>Problem &rarr; HMW, across computer engineering</h3>
+  <ul class="examples">
+    <li><span class="tag">Edge AI / ML</span>
+      <span class="pdfpair"><span class="pb">Problem:</span> Wake-word models for voice assistants are trained mostly on English and fail for many Sinhala and Tamil speakers.</span><br>
+      <span class="p p-hmw">How might we</span> <span class="p p-goal">keep keyword spotting accurate</span> <span class="p p-user">for Sinhala and Tamil speakers</span>
+      <span class="p p-ctx">on a microcontroller with only a few hundred KB of RAM?</span></li>
+    <li><span class="tag">Networking</span>
+      <span class="pdfpair"><span class="pb">Problem:</span> Video consultations from rural clinics freeze when mobile bandwidth fluctuates.</span><br>
+      <span class="p p-hmw">How might we</span> <span class="p p-goal">keep remote consultations clinically usable</span> <span class="p p-user">for patients at rural clinics</span>
+      <span class="p p-ctx">when 4G bandwidth drops and varies minute to minute?</span></li>
+    <li><span class="tag">IoT</span>
+      <span class="pdfpair"><span class="pb">Problem:</span> Soil sensors on hillside tea estates lose data when radio links fail during the monsoon.</span><br>
+      <span class="p p-hmw">How might we</span> <span class="p p-goal">deliver trustworthy soil-moisture data</span> <span class="p p-user">to tea estate field officers</span>
+      <span class="p p-ctx">when long-range links drop for hours in heavy rain?</span></li>
+    <li><span class="tag">Embedded / healthcare</span>
+      <span class="pdfpair"><span class="pb">Problem:</span> Wearable fall detectors for older adults are often left uncharged or trigger false alarms.</span><br>
+      <span class="p p-hmw">How might we</span> <span class="p p-goal">detect falls reliably</span> <span class="p p-user">for older adults living alone</span>
+      <span class="p p-ctx">without frequent charging or false alarms that erode family trust?</span></li>
+  </ul>
+
+  <h3>Words that open doors, words that close them</h3>
+  <div class="grid2">
+    <div>
+      <div class="small sub">Good action/goal verbs</div>
+      <div class="chips">
+        <span class="chip ok">detect reliably</span><span class="chip ok">keep accurate</span><span class="chip ok">reduce</span>
+        <span class="chip ok">enable</span><span class="chip ok">help &hellip; decide</span><span class="chip ok">make trustworthy</span><span class="chip ok">extend</span>
+      </div>
+    </div>
+    <div>
+      <div class="small sub">Red-flag words (method or answer baked in)</div>
+      <div class="chips">
+        <span class="chip no">using YOLOv8</span><span class="chip no">build a system</span><span class="chip no">develop an app</span>
+        <span class="chip no">using blockchain</span><span class="chip no">prove that</span><span class="chip no">better than</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ============================ 4. STEPS ============================ -->
+<section id="pov" class="container">
+  <div class="ctitle">04 &middot; From literature to question</div>
+  <h2>Four steps: literature &amp; observation &rarr; HMW &rarr; research questions</h2>
+
+  <p>Writing an HMW takes four steps. Here is what each one means in a research project:</p>
+
+  <div class="steps4">
+    <div class="step4"><span class="n">1</span><div class="t">Identify the core problem</div><div class="d">What pain point are you addressing? Who experiences it?</div>
+      <div class="r"><b>In research:</b> back it with literature and evidence (papers, data, stakeholder interviews), not your opinion.</div></div>
+    <div class="step4"><span class="n">2</span><div class="t">Reframe it as an opportunity</div><div class="d">Use positive language: focus on what&rsquo;s possible, not only what&rsquo;s broken.</div>
+      <div class="r"><b>In research:</b> &ldquo;models fail in the field&rdquo; becomes &ldquo;HMW make detection reliable in the field&rdquo;.</div></div>
+    <div class="step4"><span class="n">3</span><div class="t">Broad, but not too vague</div><div class="d">Too narrow kills creativity, too broad loses direction.</div>
+      <div class="r"><b>In research:</b> it must also fit two semesters, your data and your hardware (see <a href="#scope">scoping</a>).</div></div>
+    <div class="step4"><span class="n">4</span><div class="t">Add context or constraints</div><div class="d">E.g. budget, accessibility, environment.</div>
+      <div class="r"><b>In research:</b> compute, memory, power, connectivity, dataset, language, ethics. Often the gap itself.</div></div>
+  </div>
+
+  <h3>Worked example: edge AI for chilli farmers</h3>
+  <p>Your group&rsquo;s first idea was <em>&ldquo;Plant disease detection using deep learning&rdquo;</em>. Here is the same
+  interest taken through the steps.</p>
+
+  <div class="figure ladder-v" role="img" aria-label="Flow from literature and field notes to gap, problem statement, HMW and research questions for the chilli leaf disease example.">
+    <div class="stagebox">
+      <div class="k">Step 1 &middot; Identify the core problem <em>(literature notes + field observations)</em></div>
+      <div class="stickies">
+        <div class="sticky"><b>Lit:</b> many leaf-disease papers report high accuracy on PlantVillage, a dataset of leaves photographed on plain backgrounds.</div>
+        <div class="sticky"><b>Lit:</b> studies that test on real field photos often report a clear drop in accuracy.</div>
+        <div class="sticky"><b>Lit:</b> few studies seem to target chilli or local varieties specifically (verify in your review).</div>
+        <div class="sticky"><b>Field:</b> farmers use budget Android phones; mobile data in the fields is patchy.</div>
+        <div class="sticky"><b>Field:</b> &ldquo;By the time the officer comes, half the plot is infected.&rdquo;</div>
+        <div class="sticky"><b>Field:</b> photos are taken in harsh sunlight, with soil and other leaves in the frame.</div>
+      </div>
+      <p class="small sub" style="margin:10px 0 0">Illustrative notes. In a real project, every literature note must be backed by citations from your own review.</p>
+    </div>
+    <div class="down">look for what is missing or unproven</div>
+    <div class="stagebox">
+      <div class="k">The gap</div>
+      <p style="margin:6px 0 0">Existing models are accurate in the lab but <strong>unproven in the conditions where farmers actually
+      take photos</strong>: cluttered backgrounds, harsh lighting, cheap cameras and no connectivity.</p>
+    </div>
+    <div class="down">write it formally (step 2: frame it as an opportunity)</div>
+    <div class="stagebox">
+      <div class="k">Problem statement <em>(context + who + gap + consequence)</em></div>
+      <p class="ps" style="margin:6px 0 0">
+        <span class="p p-ctx">In Sri Lanka&rsquo;s smallholder chilli farms,</span>
+        <span class="p p-user">farmers</span> often recognise leaf disease too late to contain it.
+        <span class="p p-gap">Existing image-based detectors perform well on curated datasets but are rarely evaluated on low-cost
+        phone photos taken offline in the field,</span>
+        so <span class="p p-goal">farmers cannot rely on them for early action.</span>
+      </p>
+    </div>
+    <div class="down">steps 3 &amp; 4: right scope, real constraints</div>
+    <div class="stagebox" style="border:2px solid var(--accent)">
+      <div class="k">How Might We</div>
+      <p class="hmw-line" style="font-size:17.5px; margin-top:4px">
+        <span class="p p-hmw">How might we</span> <span class="p p-goal">identify chilli leaf disease early and reliably</span>
+        <span class="p p-user">for smallholder farmers</span>
+        <span class="p p-ctx">using low-cost phones, offline, in real field conditions?</span>
+      </p>
+    </div>
+    <div class="down">now get precise: methods are allowed here</div>
+    <div class="stagebox">
+      <div class="k">Research questions</div>
+      <div class="rq"><b>RQ1</b> How much does the accuracy of existing leaf-disease models drop on field photos from low-cost phones, compared with lab-style images?</div>
+      <div class="rq"><b>RQ2</b> Which techniques (for example augmentation, background segmentation or domain adaptation) best close that gap within on-device compute limits?</div>
+      <div class="rq"><b>RQ3</b> Can an offline on-device model meet accuracy and latency thresholds agreed with agricultural extension officers, on budget hardware?</div>
+    </div>
+    <div class="figcap">Evidence first, question second. The HMW stays method-free; the research questions are where methods and metrics appear.</div>
+  </div>
+
+  <div class="callout">
+    <span class="label">HMW vs research question</span>
+    <p>An <strong>HMW</strong> is open and generative: it should invite several possible approaches. A <strong>research
+    question</strong> is precise and answerable: by the end of the project you can say &ldquo;yes, no, or how much&rdquo;,
+    with evidence. Use the HMW to explore, then write one main RQ and two to four sub-RQs.</p>
+  </div>
+</section>
+
+<hr>
+
+<!-- ============================ 5. SCOPE ============================ -->
+<section id="scope" class="container">
+  <div class="ctitle">05 &middot; Scoping</div>
+  <h2>The Goldilocks ladder: not too broad, not too narrow</h2>
+
+  <p>Too narrow kills creativity, too broad loses direction. For a final year project there is a third test:
+  <strong>can you actually finish it in two semesters</strong> with the data, hardware and skills you have? IDEO&rsquo;s
+  Design Kit describes a good HMW as narrow enough to know where to start, but broad enough to leave room to explore.
+  Here is one research interest at five zoom levels.</p>
+
+  <div class="figure gl" role="img" aria-label="A ladder of five HMW questions from too broad at the top to too narrow at the bottom, with just right in the middle.">
+    <div class="gl-axis" aria-hidden="true">
+      <div class="bar"></div>
+      <div class="end">ask<br>WHY?<br>&uarr;</div>
+      <div class="end">&darr;<br>ask<br>HOW?</div>
+    </div>
+    <div class="rungs">
+      <div class="rung r1"><div class="lvl">Way too broad</div><div class="q">HMW use AI to improve agriculture in Sri Lanka?</div><div class="why">A national research programme, not a final year project. No idea where to start.</div></div>
+      <div class="rung r2"><div class="lvl">Too broad</div><div class="q">HMW help farmers manage crop diseases?</div><div class="why">Which crops, which farmers, which stage? Could be policy, chemistry, logistics&hellip;</div></div>
+      <div class="rung r3"><div class="lvl">Just right &#10003;</div><div class="q">HMW identify chilli leaf disease early and reliably for smallholder farmers, using low-cost phones offline in the field?</div><div class="why">Clear beneficiary, clear outcome, a real constraint that points to a gap. Still open to several methods, and feasible in a year.</div></div>
+      <div class="rung r4"><div class="lvl">Too narrow</div><div class="q">HMW raise MobileNetV3 accuracy on our 400-image dataset by 2%?</div><div class="why">A tuning task. Little to discover, and the result may not matter to anyone.</div></div>
+      <div class="rung r5"><div class="lvl">Solution in disguise</div><div class="q">HMW deploy YOLOv8 on a Raspberry Pi in the field?</div><div class="why">The method is already chosen. The only &ldquo;answer&rdquo; is to do exactly that.</div></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <b>Zoom out: ask &ldquo;Why?&rdquo;</b>
+      <p class="small" style="margin:4px 0 0">&ldquo;Why YOLO on a Pi?&rdquo; &rarr; to detect disease in the field &rarr; &ldquo;why does that
+      matter?&rdquo; &rarr; because farmers spot it too late. Each <em>why</em> climbs one rung toward the real problem.</p>
+    </div>
+    <div class="card">
+      <b>Zoom in: ask &ldquo;How?&rdquo;</b>
+      <p class="small" style="margin:4px 0 0">&ldquo;HMW help farmers manage crop disease?&rdquo; &rarr; how? &rarr; earlier detection &rarr; how? &rarr;
+      reliable detection on the phones they already own. Each <em>how</em> steps one rung down.</p>
+    </div>
+  </div>
+  <p class="small sub">This is the d.school&rsquo;s &ldquo;Why-How Laddering&rdquo; method, from their Design Thinking Bootleg.</p>
+
+  <div class="callout">
+    <span class="label">Three quick tests for a research HMW</span>
+    <p><strong>Ideas test:</strong> in two minutes, can you list three or more genuinely different approaches? &nbsp;
+    <strong>Gap test:</strong> can you point to literature showing this isn&rsquo;t already solved? &nbsp;
+    <strong>Feasibility test:</strong> do you have (or can you get) the data, hardware, access and ethics approval within the timeline?</p>
+  </div>
+</section>
+
+<hr>
+
+<!-- ============================ 6. GOOD VS BAD ============================ -->
+<section id="good-bad" class="container">
+  <div class="ctitle">06 &middot; Spot the difference</div>
+  <h2>Good vs bad research HMWs</h2>
+  <p>Six mistakes that show up again and again in final year proposals, each with a fix.</p>
+
+  <div class="gb">
+    <div class="gb-head"><span class="n">Mistake 1</span> Method baked in</div>
+    <div class="side bad"><span class="t">&#10005; Before</span>HMW build a YOLOv8-based system for pothole detection?</div>
+    <div class="side good"><span class="t">&#10003; After</span>HMW help road maintenance teams find and prioritise potholes earlier, using footage that is already being recorded?</div>
+    <div class="note">YOLOv8 may still be your final choice, but now you must justify it against alternatives (segmentation, accelerometer data from buses, crowd reports).</div>
+  </div>
+
+  <div class="gb">
+    <div class="gb-head"><span class="n">Mistake 2</span> Buzzword, too vague</div>
+    <div class="side bad"><span class="t">&#10005; Before</span>HMW use blockchain to secure IoT?</div>
+    <div class="side good"><span class="t">&#10003; After</span>HMW let home-care medical sensors prove their readings weren&rsquo;t tampered with, without draining their battery?</div>
+    <div class="note">A technology is not a problem. Name who needs what kind of security, and under which constraint.</div>
+  </div>
+
+  <div class="gb">
+    <div class="gb-head"><span class="n">Mistake 3</span> Answer baked in</div>
+    <div class="side bad"><span class="t">&#10005; Before</span>HMW prove that transformers beat CNNs for ECG classification?</div>
+    <div class="side good"><span class="t">&#10003; After</span>HMW detect arrhythmias reliably from single-lead wearable ECG, within the compute budget of a smartwatch?</div>
+    <div class="note">Research finds out; it doesn&rsquo;t set out to &ldquo;prove&rdquo; a preferred answer. A comparison can become an RQ later.</div>
+  </div>
+
+  <div class="gb">
+    <div class="gb-head"><span class="n">Mistake 4</span> No stakeholder, no context</div>
+    <div class="side bad"><span class="t">&#10005; Before</span>HMW reduce MQTT latency?</div>
+    <div class="side good"><span class="t">&#10003; After</span>HMW keep alerts from home patient monitors timely for caregivers when rural 4G connectivity degrades?</div>
+    <div class="note">Latency is a metric. Who suffers when it&rsquo;s high, and when? That context tells you which latency matters and what &ldquo;good enough&rdquo; is.</div>
+  </div>
+
+  <div class="gb">
+    <div class="gb-head"><span class="n">Mistake 5</span> Negative framing</div>
+    <div class="side bad"><span class="t">&#10005; Before</span>HMW stop hackers attacking smart homes?</div>
+    <div class="side good"><span class="t">&#10003; After</span>HMW help households notice and recover from compromised smart devices, without needing technical skills?</div>
+    <div class="note">Reframe as an opportunity: focus on what&rsquo;s possible. &ldquo;Stop X&rdquo; is also impossible to evaluate (you can&rsquo;t measure every attack prevented).</div>
+  </div>
+
+  <div class="gb">
+    <div class="gb-head"><span class="n">Mistake 6</span> Not feasible in a year</div>
+    <div class="side bad"><span class="t">&#10005; Before</span>HMW build a self-driving tuk-tuk for Colombo?</div>
+    <div class="side good"><span class="t">&#10003; After</span>HMW give tuk-tuk drivers early warning of collision risk in dense Colombo traffic, using a low-cost dashcam?</div>
+    <div class="note">Ambition is good. Scope it to something a small team can build, test and evaluate with real data before the submission deadline.</div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ============================ 7. TECHNIQUES ============================ -->
+<section id="techniques" class="container">
+  <div class="ctitle">07 &middot; Diverge</div>
+  <h2>Start broad, then refine: one problem, many HMWs</h2>
+
+  <p>You can create multiple HMWs from one problem, and you should. Write many quickly with your team, then choose the
+  most promising with your supervisor. The d.school&rsquo;s HMW method suggests a set of &ldquo;lenses&rdquo; for this.
+  Here they are applied to one healthcare / embedded problem, each pointing to a possible research question.</p>
+
+  <div class="pov-hub">
+    <div class="k">Our starting problem</div>
+    <span class="p p-user">Older adults living alone</span> risk lying undetected after a fall.
+    <span class="p p-gap">Wearable detectors exist, but they are often left uncharged or unworn, and false alarms erode family caregivers&rsquo; trust</span>,
+    so <span class="p p-goal">help often arrives late</span>.
+  </div>
+
+  <div class="dc-wrap" aria-hidden="true">
+    <svg class="dc-svg" viewBox="0 0 720 170">
+      <g class="svg-line" stroke-width="1.5">
+        <path d="M86 85 C 180 85, 200 15, 300 15"/><path d="M86 85 C 180 85, 200 35, 300 35"/>
+        <path d="M86 85 C 180 85, 200 55, 300 55"/><path d="M86 85 C 180 85, 200 75, 300 75"/>
+        <path d="M86 85 C 180 85, 200 95, 300 95"/><path d="M86 85 C 180 85, 200 115, 300 115"/>
+        <path d="M86 85 C 180 85, 200 135, 300 135"/><path d="M86 85 C 180 85, 200 155, 300 155"/>
+      </g>
+      <g class="svg-accent-line" stroke-width="2">
+        <path d="M300 35 C 400 35, 420 70, 500 70"/><path d="M300 95 C 400 95, 420 85, 500 85"/><path d="M300 135 C 400 135, 420 100, 500 100"/>
+        <path d="M512 85 L 594 85"/>
+      </g>
+      <circle cx="56" cy="85" r="34" class="svg-tint-hot" stroke-width="2"/>
+      <text x="56" y="92" text-anchor="middle" class="svg-fg" font-size="15" font-weight="700">Problem</text>
+      <g class="svg-dot" stroke-width="1.5">
+        <circle cx="300" cy="15" r="7"/><circle cx="300" cy="55" r="7"/><circle cx="300" cy="75" r="7"/>
+        <circle cx="300" cy="115" r="7"/><circle cx="300" cy="155" r="7"/>
+      </g>
+      <g class="svg-pill"><circle cx="300" cy="35" r="7"/><circle cx="300" cy="95" r="7"/><circle cx="300" cy="135" r="7"/></g>
+      <g class="svg-pill"><circle cx="506" cy="70" r="7"/><circle cx="506" cy="85" r="7"/><circle cx="506" cy="100" r="7"/></g>
+      <rect x="594" y="60" width="122" height="50" rx="10" class="svg-tint-hot" stroke-width="2"/>
+      <text x="655" y="93" text-anchor="middle" class="svg-fg" font-size="20" font-weight="700">RQs</text>
+    </svg>
+    <div class="dc-caps">
+      <div><b>1 problem</b>from literature &amp; context</div>
+      <div><b>Diverge</b>write 10&ndash;20 HMWs fast, using the lenses below</div>
+      <div><b>Converge</b>pick 1&ndash;2 with your supervisor</div>
+      <div><b>Refine</b>into research questions</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="tech">
+      <div class="nm"><span class="ic">&#9650;</span>Amp up the good</div>
+      <div class="how">What already works? Build on it.</div>
+      <div class="ex">HMW use things older adults already carry or wear every day, like a phone or a bangle?</div>
+      <div class="leads"><b>Possible RQ:</b> How accurately can a smartphone carried in a pocket detect falls compared with a dedicated wearable?</div>
+    </div>
+    <div class="tech">
+      <div class="nm"><span class="ic">&#10005;</span>Remove the bad</div>
+      <div class="how">Target the worst part directly.</div>
+      <div class="ex">HMW cut false alarms enough that caregivers trust every alert?</div>
+      <div class="leads"><b>Possible RQ:</b> Which on-device features reduce false positives during daily activities without missing real falls?</div>
+    </div>
+    <div class="tech">
+      <div class="nm"><span class="ic">&#8646;</span>Flip it (explore the opposite)</div>
+      <div class="how">What if the opposite were true?</div>
+      <div class="ex">HMW detect falls with nothing worn at all?</div>
+      <div class="leads"><b>Possible RQ:</b> Can low-cost mmWave radar detect falls in a typical home room with acceptable accuracy and privacy?</div>
+    </div>
+    <div class="tech">
+      <div class="nm"><span class="ic">?</span>Question an assumption</div>
+      <div class="how">Spot a hidden &ldquo;must&rdquo; and challenge it.</div>
+      <div class="ex">Assumption: you need new hardware. HMW use the home&rsquo;s existing Wi-Fi router to sense falls?</div>
+      <div class="leads"><b>Possible RQ:</b> How robust is Wi-Fi channel-state-information sensing to furniture changes and multiple occupants?</div>
+    </div>
+    <div class="tech">
+      <div class="nm"><span class="ic">A</span>Go after an adjective</div>
+      <div class="how">Chase one word in the problem, like &ldquo;trust&rdquo;.</div>
+      <div class="ex">HMW make fall alerts <em>explainable</em> to non-technical family members?</div>
+      <div class="leads"><b>Possible RQ:</b> Does showing a short reason with each alert change caregivers&rsquo; trust and response time?</div>
+    </div>
+    <div class="tech">
+      <div class="nm"><span class="ic">&#9733;</span>Find unexpected resources</div>
+      <div class="how">Who or what is around, unused?</div>
+      <div class="ex">HMW involve neighbours as a first-response network?</div>
+      <div class="leads"><b>Possible RQ:</b> How does a tiered alert (neighbour first, then family) affect time to assistance in a simulated study?</div>
+    </div>
+    <div class="tech">
+      <div class="nm"><span class="ic">&asymp;</span>Create an analogy</div>
+      <div class="how">Who else solves a similar problem?</div>
+      <div class="ex">HMW make fall detection as &ldquo;install and forget&rdquo; as a smoke alarm?</div>
+      <div class="leads"><b>Possible RQ:</b> What battery life is achievable with event-driven sensing on a low-power MCU?</div>
+    </div>
+    <div class="tech">
+      <div class="nm"><span class="ic">&#9638;</span>Break it into pieces</div>
+      <div class="how">Split the big problem into sub-problems, one HMW each.</div>
+      <div class="ex">HMW extend battery life? &middot; HMW detect falls in bathrooms, privately? &middot; HMW shorten the time from fall to help?</div>
+      <div class="leads"><b>Possible RQ:</b> each piece is a candidate for its own sub-RQ, or its own project.</div>
+    </div>
+    <div class="tech">
+      <div class="nm"><span class="ic">&#8635;</span>Change a status quo</div>
+      <div class="how">Question a &ldquo;that&rsquo;s just how it&rsquo;s done&rdquo;.</div>
+      <div class="ex">HMW move from detecting falls to predicting fall risk?</div>
+      <div class="leads"><b>Possible RQ:</b> Can gait features from a wearable IMU identify rising fall risk weeks in advance?</div>
+    </div>
+    <div class="tech">
+      <div class="nm"><span class="ic">&#9888;</span>Play against the challenge</div>
+      <div class="how">Use the problem itself as a resource.</div>
+      <div class="ex">HMW use each false alarm as data to personalise the detector?</div>
+      <div class="leads"><b>Possible RQ:</b> How quickly does on-device personalisation reduce false alarms for a new user?</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">Collaborate</span>
+    <p>Co-create HMWs with your team for diverse perspectives, and bring your supervisor and a real stakeholder (a
+    caregiver, a nurse, a field officer) into the session. Ten lenses gave us ten different possible projects;
+    starting from &ldquo;build a fall-detection band&rdquo; would have hidden almost all of them.</p>
+  </div>
+</section>
+
+<hr>
+
+<!-- ============================ 8. CASE STUDY ============================ -->
+<section id="case" class="container">
+  <div class="ctitle">08 &middot; Case study</div>
+  <h2>A full research lifecycle: the &ldquo;smart lab power&rdquo; project</h2>
+
+  <p>Here is how a final year group might take one project from a vague brief to a defensible research plan.
+  It is an illustrative scenario, not a real project; the literature claims are deliberately general and would need
+  your own cited review. Every step is something you can copy.</p>
+
+  <div class="callout">
+    <span class="label">The brief</span>
+    <p>Supervisor: <em>&ldquo;Something in IoT and energy efficiency, ideally in our own faculty.&rdquo;</em>
+    Group&rsquo;s first instinct: <em>&ldquo;ESP32 + current sensors on every socket + a React dashboard showing kWh.&rdquo;</em></p>
+  </div>
+
+  <div class="figure">
+    <div class="entry hot">
+      <div class="timespan">Wk 1&ndash;2</div><div class="rail"><span class="dot"></span></div>
+      <div class="desc">
+        <div class="role">1 &middot; Topic: from area to topic</div>
+        <div class="where">Area: IoT for building energy &rarr; Topic: reducing after-hours energy waste in university teaching labs.</div>
+      </div>
+    </div>
+    <div class="entry hot">
+      <div class="timespan">Wk 2&ndash;5</div><div class="rail"><span class="dot"></span></div>
+      <div class="desc">
+        <div class="role">2 &middot; Literature &amp; observation</div>
+        <div class="where">Literature themes to search and summarise (e.g. with a systematic search protocol):</div>
+        <div class="idea-grid">
+          <span class="idea">occupancy-driven HVAC control</span><span class="idea">occupancy sensing (PIR, CO&#8322;, Wi-Fi)</span>
+          <span class="idea">non-intrusive load monitoring</span><span class="idea">energy feedback &amp; behaviour change</span>
+        </div>
+        <div class="where" style="margin-top:10px">Observation: shadow lab instructors at the end of the day; interview maintenance staff.</div>
+        <div class="stickies">
+          <div class="sticky">Instructor walks to 4 labs on 3 floors after the last practical.</div>
+          <div class="sticky">ACs are often still running in the top-floor lab the next morning.</div>
+          <div class="sticky">&ldquo;If I&rsquo;m late for my bus, I skip the top floor.&rdquo;</div>
+          <div class="sticky">Labs use standalone split ACs; there is no building management system.</div>
+        </div>
+      </div>
+    </div>
+    <div class="entry hot">
+      <div class="timespan">Wk 5</div><div class="rail"><span class="dot"></span></div>
+      <div class="desc">
+        <div class="role">3 &middot; The gap</div>
+        <div class="where">Much occupancy-driven control work assumes a building management system and central HVAC. Less is known about
+        <strong>low-cost retrofits for older labs with standalone split ACs and no BMS</strong>, which are common in many
+        universities. <span class="sub">(Illustrative: establish this with your own review.)</span></div>
+      </div>
+    </div>
+    <div class="entry hot">
+      <div class="timespan">Wk 6</div><div class="rail"><span class="dot"></span></div>
+      <div class="desc">
+        <div class="role">4 &middot; Problem statement &amp; HMW</div>
+        <p class="ps small" style="margin:4px 0 8px">
+          <span class="p p-ctx">In teaching labs without building management systems,</span>
+          <span class="p p-user">lab instructors</span> must check every room manually at the end of the day, and the check is skipped when they are rushed.
+          <span class="p p-gap">Existing occupancy-driven control solutions largely assume BMS infrastructure,</span>
+          so <span class="p p-goal">equipment runs unnecessarily after hours.</span>
+        </p>
+        <ul class="tight small">
+          <li>HMW let instructors confirm every lab is powered down without walking to each one?</li>
+          <li>HMW make equipment switch itself off when the timetable says the room is empty?</li>
+          <li>HMW make a forgotten AC visible to someone who can act on it, the same evening?</li>
+        </ul>
+        <div class="where" style="margin-top:6px">Chosen with the supervisor:</div>
+        <p class="hmw-line" style="font-size:17px">
+          <span class="p p-hmw">How might we</span> <span class="p p-goal">reduce after-hours energy waste</span>
+          <span class="p p-user">for lab instructors and the faculty</span>
+          <span class="p p-ctx">in labs with standalone ACs and no building management system, on a student budget?</span>
+        </p>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="timespan">Wk 6</div><div class="rail"><span class="dot"></span></div>
+      <div class="desc">
+        <div class="role">5 &middot; Research questions</div>
+        <div class="rq"><b>RQ1</b> How accurately can a low-cost sensor node (current clamp + PIR) detect &ldquo;unoccupied but powered&rdquo; states in teaching labs, compared with manual logs?</div>
+        <div class="rq"><b>RQ2</b> Which intervention, an instructor alert or a timetable-aware auto-off with manual override, reduces after-hours AC runtime more without disrupting scheduled classes?</div>
+        <div class="rq"><b>RQ3</b> How do lab instructors perceive the usefulness and trustworthiness of the system?</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="timespan">Wk 7</div><div class="rail"><span class="dot"></span></div>
+      <div class="desc">
+        <div class="role">6 &middot; Aim &amp; SMART objectives</div>
+        <div class="where"><b>Aim:</b> to design and evaluate a low-cost IoT retrofit that reduces after-hours energy waste in university teaching labs that lack a building management system.</div>
+        <ul class="obj">
+          <li><b class="o">O1</b>Review literature on occupancy sensing and occupancy-driven control by week 5.</li>
+          <li><b class="o">O2</b>Build and bench-test a sensor node (ESP32, current clamp, PIR) by week 10.</li>
+          <li><b class="o">O3</b>Deploy in two labs and collect two weeks of baseline data with manual ground-truth logs by week 13.</li>
+          <li><b class="o">O4</b>Measure detection precision and recall against the manual logs by week 15. <span class="sub">(RQ1)</span></li>
+          <li><b class="o">O5</b>Run both interventions for two weeks each and compare after-hours AC runtime with the baseline by week 20. <span class="sub">(RQ2)</span></li>
+          <li><b class="o">O6</b>Survey and interview instructors, e.g. using the System Usability Scale, by week 22. <span class="sub">(RQ3)</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="timespan">Wk 8&ndash;24</div><div class="rail"><span class="dot"></span></div>
+      <div class="desc">
+        <div class="role">7 &middot; Methodology &amp; evaluation</div>
+        <ul>
+          <li><b>Approach:</b> design science (build an artefact, evaluate it rigorously) with a baseline-vs-intervention field experiment.</li>
+          <li><b>Baseline:</b> current manual lock-up routine, logged for two weeks before any intervention.</li>
+          <li><b>Ethics &amp; safety:</b> faculty ethics approval for surveys; maintenance sign-off before any relay touches mains power.</li>
+          <li><b>Threats to validity:</b> only one semester (seasonal effects), only two labs, possible behaviour change because people know they are observed.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="timespan">Wk 8</div><div class="rail"><span class="dot"></span></div>
+      <div class="desc">
+        <div class="role">8 &middot; Scope &amp; constraints</div>
+        <div class="scope3">
+          <div class="card in"><span class="t">In scope</span><ul><li>2 teaching labs</li><li>standalone split ACs and PCs</li><li>after-hours period</li><li>one semester of data</li></ul></div>
+          <div class="card out"><span class="t">Out of scope</span><ul><li>central HVAC</li><li>whole-building optimisation</li><li>university-wide cost analysis</li></ul></div>
+          <div class="card con"><span class="t">Constraints</span><ul><li>student hardware budget</li><li>mains safety approval</li><li>privacy: PIR only, no cameras</li><li>fixed submission deadline</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Traceability: every RQ has an objective, a method and a metric</h3>
+  <div class="trace-wrap">
+    <table class="trace">
+      <thead><tr><th>RQ</th><th>Objectives</th><th>Method</th><th>Evaluation metric</th></tr></thead>
+      <tbody>
+        <tr><td data-l="RQ">RQ1</td><td data-l="Objectives">O2, O3, O4</td><td data-l="Method">Field deployment with manual ground-truth logs</td><td data-l="Evaluation metric">Precision, recall, F1 for &ldquo;unoccupied but powered&rdquo;</td></tr>
+        <tr><td data-l="RQ">RQ2</td><td data-l="Objectives">O5</td><td data-l="Method">Baseline vs two intervention periods</td><td data-l="Evaluation metric">After-hours AC runtime per week; number of disrupted classes</td></tr>
+        <tr><td data-l="RQ">RQ3</td><td data-l="Objectives">O6</td><td data-l="Method">Questionnaire + semi-structured interviews</td><td data-l="Evaluation metric">SUS score; themes from interviews</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ba">
+    <div class="card before">
+      <span class="t">Before HMW</span>
+      <b>&ldquo;IoT energy dashboard for the faculty.&rdquo;</b>
+      <ul>
+        <li>No research question; success = &ldquo;it works&rdquo;</li>
+        <li>No gap, so no clear contribution</li>
+        <li>Nothing to evaluate against</li>
+      </ul>
+    </div>
+    <div class="card after">
+      <span class="t">After HMW</span>
+      <b>A research plan with 3 RQs and 6 objectives.</b>
+      <ul>
+        <li>Clear gap: low-cost retrofit for labs without a BMS</li>
+        <li>Every RQ maps to a method and a metric</li>
+        <li>Explicit scope, constraints and threats to validity</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">Proposal defence tip</span>
+    <p>Put the problem statement, the main RQ and the traceability table on your first few slides. It tells the panel
+    exactly how to judge your project, and it gives you a ready answer to &ldquo;why didn&rsquo;t you just use X?&rdquo;:
+    because RQ2 compares X against the alternatives.</p>
+  </div>
+</section>
+
+<hr>
+
+<!-- ============================ 9. TRY IT ============================ -->
+<section id="try" class="container">
+  <div class="ctitle">09 &middot; Your turn</div>
+  <h2>Try it: draft your HMW and research questions, then fix some broken ones</h2>
+
+  <div class="tool" id="builder">
+    <div class="tool-title">HMW &rarr; research question builder</div>
+    <div class="tool-sub">Fill in the formula for your own project. You get the HMW, a draft main research question, sub-question prompts and a draft aim, plus a checker for common mistakes. Treat the output as a first draft to refine with your supervisor.</div>
+    <div class="presets">
+      <label for="preset">Start from an example:</label>
+      <select id="preset">
+        <option value="">(blank)</option>
+        <option value="leaf">Edge AI: chilli leaf disease</option>
+        <option value="tele">Networking: rural telemedicine</option>
+        <option value="tea">IoT: tea estate soil sensing</option>
+        <option value="fall">Embedded / health: fall detection</option>
+        <option value="kws">Edge AI: Sinhala &amp; Tamil keyword spotting</option>
+        <option value="bad">A bad one (method + answer baked in)</option>
+      </select>
+    </div>
+    <div class="fields">
+      <div class="field goal"><label for="f-goal">Action / Goal</label><input id="f-goal" placeholder="detect leaf disease early and reliably" autocomplete="off"><div class="hint">a verb phrase: the outcome to make possible</div></div>
+      <div class="field user"><label for="f-user">Target / User</label><input id="f-user" placeholder="smallholder chilli farmers" autocomplete="off"><div class="hint">who benefits or is affected?</div></div>
+      <div class="field ctx" style="grid-column: 1 / -1"><label for="f-ctx">Challenge / Constraint</label><input id="f-ctx" placeholder="using low-cost phones, offline, in real field conditions" autocomplete="off"><div class="hint">the real-world condition that makes it hard (often your gap): compute, power, connectivity, data, language, budget&hellip;</div></div>
+    </div>
+    <div class="preview" aria-live="polite">
+      <div class="k">Your HMW</div>
+      <p class="hmw-line" id="out"></p>
+      <div class="outbox" id="rqbox">
+        <div class="k">Draft main research question</div>
+        <p class="rq-out" id="rq-main"></p>
+        <div class="k">Sub-question prompts</div>
+        <ul id="rq-subs"></ul>
+        <div class="k">Draft aim</div>
+        <p class="rq-out" id="aim"></p>
+      </div>
+      <div class="k" style="margin-top:8px">Checker</div>
+      <ul class="lint" id="lint"></ul>
+    </div>
+    <div class="btn-row">
+      <button class="btn primary" type="button" id="copy">Copy all</button>
+      <button class="btn" type="button" id="clear">Clear</button>
+      <span class="small sub" id="copied"></span>
+    </div>
+  </div>
+
+  <h3>Fix this HMW</h3>
+  <p class="small sub">Each statement comes from a (made-up) final year proposal. Pick the main problem to see an explanation and a better version.</p>
+  <div id="quiz"></div>
+  <p class="score" id="score"></p>
+</section>
+
+<hr>
+
+<!-- ============================ 10. CHEAT SHEET ============================ -->
+<section id="cheatsheet" class="container">
+  <div class="ctitle">10 &middot; Cheat sheet</div>
+  <h2>Templates, checklist, summary and references</h2>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="small sub">HMW formula</div>
+      <p style="margin:4px 0 0; line-height:2"><span class="p p-hmw">How might we</span> <span class="p p-goal">[action / goal]</span> <span class="p p-user">[target / user]</span> <span class="p p-ctx">[challenge / constraint]</span>?</p>
+    </div>
+    <div class="card">
+      <div class="small sub">Problem statement</div>
+      <p style="margin:4px 0 0; line-height:2" class="small">In <span class="p p-ctx">[context]</span>, <span class="p p-user">[who]</span> face <span class="p p-goal">[problem]</span>. <span class="p p-gap">Existing work [does X] but [gap]</span>, so <span class="p p-goal">[consequence]</span>.</p>
+    </div>
+    <div class="card">
+      <div class="small sub">Research question</div>
+      <p style="margin:4px 0 0" class="small">To what extent / how can <b>[outcome]</b> be achieved for <b>[who]</b> under <b>[constraint]</b>, compared with <b>[baseline]</b>?</p>
+    </div>
+    <div class="card">
+      <div class="small sub">SMART objective</div>
+      <p style="margin:4px 0 0" class="small"><b>[Verb]</b> <b>[what]</b>, measured by <b>[metric]</b>, by <b>[week]</b>. Specific, Measurable, Achievable, Relevant, Time-bound.</p>
+    </div>
+  </div>
+
+  <h3>Before you take your problem statement to your supervisor</h3>
+  <div class="progress" aria-hidden="true"><div id="prog"></div></div>
+  <div class="small sub" id="prog-text">0 of 10 checked</div>
+  <ul class="check" id="checklist">
+    <li><label><input type="checkbox"><span>The problem is backed by <strong>literature and evidence</strong>, not just my opinion.</span></label></li>
+    <li><label><input type="checkbox"><span>I can state the <strong>research gap</strong> in one sentence, with citations.</span></label></li>
+    <li><label><input type="checkbox"><span>It names a <strong>specific target / user</strong> or stakeholder.</span></label></li>
+    <li><label><input type="checkbox"><span>The HMW contains <strong>no method</strong> (YOLO, LoRa, blockchain, &ldquo;build an app&rdquo;&hellip;).</span></label></li>
+    <li><label><input type="checkbox"><span>It doesn&rsquo;t <strong>bake in the answer</strong> (&ldquo;prove that&rdquo;, &ldquo;better than&rdquo;).</span></label></li>
+    <li><label><input type="checkbox"><span>It is phrased <strong>positively</strong>, as an opportunity.</span></label></li>
+    <li><label><input type="checkbox"><span>It is <strong>broad but not vague</strong>: three or more possible approaches.</span></label></li>
+    <li><label><input type="checkbox"><span>It is <strong>feasible</strong>: data, hardware, access and ethics within two semesters.</span></label></li>
+    <li><label><input type="checkbox"><span>It turns into <strong>answerable RQs</strong>, each with an objective, method and metric.</span></label></li>
+    <li><label><input type="checkbox"><span>I <strong>co-created</strong> several HMWs with my team and chose this one deliberately.</span></label></li>
+  </ul>
+
+  <h3>TL;DR</h3>
+  <div class="tldr">
+    <ol>
+      <li><strong>A topic is not a problem.</strong> &ldquo;Deep learning for X&rdquo; needs a gap, a stakeholder and a constraint.</li>
+      <li><strong>Area &rarr; topic &rarr; gap &rarr; problem statement &rarr; HMW &rarr; RQs &rarr; aim &amp; objectives.</strong></li>
+      <li><strong>HMW = How might we + action/goal + target/user + challenge/constraint.</strong> No method inside.</li>
+      <li><strong>Start broad, then refine.</strong> Ask &ldquo;why?&rdquo; to widen, &ldquo;how?&rdquo; to narrow, and check feasibility.</li>
+      <li><strong>Write many HMWs, pick one or two.</strong> Methods appear in the RQs and methodology, where you justify them.</li>
+      <li><strong>Make it traceable.</strong> Every RQ links to an objective, a method and an evaluation metric.</li>
+    </ol>
+  </div>
+
+  <h3>References &amp; further reading</h3>
+  <p class="small sub" style="margin-bottom:6px">On HMW and design thinking</p>
+  <ol class="refs">
+    <li>IDEO.org, <a href="https://www.designkit.org/methods/how-might-we.html">&ldquo;How Might We&rdquo;</a>. <span class="src">Design Kit methods.</span></li>
+    <li>Stanford d.school, <a href="https://dschool.stanford.edu/resources/design-thinking-bootleg">Design Thinking Bootleg</a> <span class="src">(includes How Might We and Why-How Laddering methods).</span></li>
+    <li>Warren Berger, <a href="https://hbr.org/2012/09/the-secret-phrase-top-innovato">&ldquo;The Secret Phrase Top Innovators Use&rdquo;</a>. <span class="src">Harvard Business Review, Sept 2012.</span></li>
+    <li>Maria Rosala, <a href="https://www.nngroup.com/articles/how-might-we-questions/">&ldquo;Using &lsquo;How Might We&rsquo; Questions to Ideate on the Right Problems&rdquo;</a>. <span class="src">Nielsen Norman Group, 2021.</span></li>
+    <li>Design Council, <a href="https://www.designcouncil.org.uk/our-resources/the-double-diamond/">&ldquo;The Double Diamond&rdquo;</a>. <span class="src">UK Design Council.</span></li>
+  </ol>
+  <p class="small sub" style="margin:10px 0 6px">On research design</p>
+  <ol class="refs" start="6">
+    <li>W. C. Booth, G. G. Colomb, J. M. Williams, J. Bizup &amp; W. T. FitzGerald, <em>The Craft of Research</em>, 4th ed. <span class="src">University of Chicago Press, 2016.</span></li>
+    <li>J. W. Creswell &amp; J. D. Creswell, <em>Research Design: Qualitative, Quantitative, and Mixed Methods Approaches</em>, 5th ed. <span class="src">SAGE, 2018.</span></li>
+    <li>J. Zobel, <em>Writing for Computer Science</em>, 3rd ed. <span class="src">Springer, 2014.</span></li>
+    <li>B. Kitchenham &amp; S. Charters, &ldquo;Guidelines for Performing Systematic Literature Reviews in Software Engineering&rdquo;. <span class="src">EBSE Technical Report EBSE-2007-01, 2007.</span></li>
+    <li>A. R. Hevner, S. T. March, J. Park &amp; S. Ram, <a href="https://doi.org/10.2307/25148625">&ldquo;Design Science in Information Systems Research&rdquo;</a>. <span class="src">MIS Quarterly 28(1), 75&ndash;106, 2004.</span></li>
+    <li>M. Alvesson &amp; J. Sandberg, <a href="https://doi.org/10.5465/amr.2009.0188">&ldquo;Generating Research Questions Through Problematization&rdquo;</a>. <span class="src">Academy of Management Review 36(2), 247&ndash;271, 2011.</span></li>
+    <li>G. T. Doran, &ldquo;There&rsquo;s a S.M.A.R.T. Way to Write Management&rsquo;s Goals and Objectives&rdquo;. <span class="src">Management Review 70(11), 1981.</span></li>
+  </ol>
+
+  <div class="author-card" style="margin-top:26px">
+    <img src="https://manithj.github.io/assets/me.jpg" width="64" height="64" alt="Manith Marapperuma">
+    <div>
+      <div class="nm">Written by Manith Marapperuma</div>
+      <div class="r">Lead Research Engineer &middot; BSc (Hons) Computer Engineering, KDU</div>
+      <div class="lk">
+        <a href="https://manithj.github.io/">manithj.github.io</a>
+        <a href="https://manithj.github.io/#publications">publications</a>
+        <a href="https://manithj.github.io/#writing">more writing</a>
+        <a href="https://manithj.medium.com/">Medium &#8599;</a>
+        <a href="https://www.linkedin.com/in/manithj/">LinkedIn &#8599;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="container">
+  <p>&copy; 2026 Manith Marapperuma &middot; <a href="https://manithj.github.io/">back to manithj.github.io</a></p>
+</footer>
+
+<script>
+// Theme toggle: identical behaviour to manithj.github.io/main.js.
+// Follows the OS by default; a click pins an explicit choice in localStorage('theme').
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    var pinned = root.getAttribute('data-theme');
+    if (pinned) return pinned === 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function paint() { btn.textContent = isDark() ? '\u2600' : '\u263E'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    paint();
+  });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', paint);
+  paint();
+})();
+
+// Highlight the nav link for the section in view (same as main site).
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+  var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  if (!sections.length || !('IntersectionObserver' in window)) return;
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) {
+        a.style.color = a.getAttribute('href') === '#' + e.target.id ? 'var(--accent)' : '';
+      });
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(function (s) { obs.observe(s); });
+})();
+
+// HMW -> research question builder
+(function () {
+  var f = { goal: document.getElementById('f-goal'), user: document.getElementById('f-user'), ctx: document.getElementById('f-ctx') };
+  var out = document.getElementById('out'), lint = document.getElementById('lint');
+  var rqMain = document.getElementById('rq-main'), rqSubs = document.getElementById('rq-subs'), aim = document.getElementById('aim');
+  var presets = {
+    leaf: ['identify chilli leaf disease early and reliably', 'smallholder farmers', 'using low-cost phones, offline, in real field conditions'],
+    tele: ['keep remote consultations clinically usable', 'patients at rural clinics', 'when 4G bandwidth drops and varies minute to minute'],
+    tea: ['deliver trustworthy soil-moisture data', 'tea estate field officers', 'when long-range radio links drop for hours during monsoon rain'],
+    fall: ['detect falls reliably', 'older adults living alone', 'without frequent charging or false alarms that erode family trust'],
+    kws: ['keep keyword spotting accurate', 'Sinhala and Tamil speakers', 'on a microcontroller with only a few hundred KB of RAM'],
+    bad: ['prove that a YOLOv8 app is better than existing systems', 'users', 'and stop crop losses']
+  };
+  var methodWords = ['app', 'apps', 'application', 'website', 'web app', 'mobile app', 'dashboard', 'chatbot', 'bot', 'system', 'platform', 'portal',
+    'blockchain', 'yolo', 'yolov5', 'yolov8', 'cnn', 'cnns', 'lstm', 'rnn', 'transformer', 'transformers', 'bert', 'llm', 'llms', 'gpt', 'chatgpt',
+    'deep learning', 'machine learning', 'ai', 'neural network', 'mobilenet', 'resnet', 'tensorflow', 'pytorch', 'raspberry pi', 'arduino', 'esp32',
+    'lora', 'lorawan', 'zigbee', 'mqtt', 'build', 'develop', 'implement', 'deploy'];
+  var answerWords = ['prove', 'prove that', 'show that', 'demonstrate that', 'better than', 'outperform', 'outperforms', 'beat', 'beats', 'superior'];
+  var negWords = ['stop', 'prevent', 'ban', 'eliminate', 'block', 'never', 'not', "don't", 'cannot', 'avoid', 'punish'];
+  var vagueUsers = ['users', 'people', 'everyone', 'customers', 'humans', 'the public', 'society', 'sri lanka', 'the world', 'students', 'patients', 'farmers'];
+  var hugeScope = ['sri lanka', 'the country', 'the world', 'all ', 'every ', 'entire', 'nationwide', 'global'];
+
+  function esc(s) { return s.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function clean(s) { return s.trim().replace(/[?.!]+$/, ''); }
+  function hasWord(text, list) {
+    var t = ' ' + text.toLowerCase().replace(/[^a-z0-9' ]/g, ' ').replace(/\s+/g, ' ') + ' ';
+    for (var i = 0; i < list.length; i++) { if (t.indexOf(' ' + list[i].trim() + ' ') !== -1) return list[i].trim(); }
+    return null;
+  }
+  function span(cls, val, ph) {
+    return '<span class="p ' + cls + '"' + (val ? '' : ' style="opacity:.55;font-style:italic"') + '>' + esc(val || ph) + '</span>';
+  }
+  function render() {
+    var g = clean(f.goal.value).replace(/^(to|how might we)\s+/i, '');
+    var u = clean(f.user.value).replace(/^for\s+/i, '');
+    var c = clean(f.ctx.value);
+    out.innerHTML = '<span class="p p-hmw">How might we</span> ' + span('p-goal', g, '[action / goal]') + ' ' +
+      span('p-user', u ? 'for ' + u : '', '[for target / user]') + ' ' + span('p-ctx', c, '[challenge / constraint]') + '?';
+
+    var G = g || '[achieve the goal]', U = u || '[target users]', C = c || '[under the constraint]';
+    rqMain.innerHTML = 'To what extent can we ' + span('p-goal', G, '') + ' for ' + span('p-user', U, '') + ' ' + span('p-ctx', C, '') + ', compared with current approaches?';
+    rqSubs.innerHTML = [
+      '<b>Gap:</b> What approaches currently exist to ' + esc(G) + ', and where do they fall short ' + esc(C) + '?',
+      '<b>Design:</b> How can an approach be designed to ' + esc(G) + ' ' + esc(C) + '? (methods are allowed here)',
+      '<b>Evaluation:</b> How effectively does the proposed approach ' + esc(G) + ' for ' + esc(U) + ', measured by [metric] against [baseline]?',
+      '<b>Stakeholders:</b> How do ' + esc(U) + ' perceive its usefulness and trustworthiness?'
+    ].map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    aim.innerHTML = 'To investigate, design and evaluate how to ' + esc(G) + ' for ' + esc(U) + ' ' + esc(C) + '.';
+
+    var items = [], all = [g, u, c].join(' ');
+    if (!g && !u && !c) {
+      items.push(['warn', 'Start typing, or pick an example above.']);
+    } else {
+      if (!u) items.push(['bad', 'No target / user yet. Who benefits or is affected?']);
+      else if (vagueUsers.indexOf(u.toLowerCase()) !== -1) items.push(['warn', '"' + u + '" is very broad. Which ones exactly? (e.g. smallholder chilli farmers, rural clinic nurses)']);
+      else items.push(['ok', 'Has a specific target / user.']);
+
+      var mw = hasWord(all, methodWords);
+      if (mw) items.push(['bad', 'Method baked in ("' + mw + '"). Keep methods for your research questions and methodology; describe the outcome instead.']);
+      else items.push(['ok', 'No method baked in.']);
+
+      var aw = hasWord(all, answerWords);
+      if (aw) items.push(['bad', 'Answer baked in ("' + aw + '"). Research finds out; it shouldn\'t set out to prove a preferred result.']);
+
+      var nw = hasWord(all, negWords);
+      if (nw) items.push(['warn', 'Negative framing ("' + nw + '"). Reframe as an opportunity: what should become possible?']);
+      else items.push(['ok', 'Positively framed.']);
+
+      var gw = (g.match(/\S+/g) || []).length;
+      if (gw === 0) items.push(['bad', 'No action / goal yet. What outcome should become possible?']);
+      else if (gw < 3) items.push(['warn', 'Goal is very short. Add what "good" means: reliably, early, accurately, within X?']);
+      else items.push(['ok', 'Goal is a clear outcome.']);
+
+      if (!c) items.push(['warn', 'No challenge / constraint. In research this is often where the gap is: compute, power, connectivity, data, language, budget.']);
+      else items.push(['ok', 'Has a real-world constraint (check it matches the gap in your literature review).']);
+
+      var hs = hasWord(' ' + all + ' ', hugeScope);
+      if (hs) items.push(['warn', 'Scope may be too big for a final year project ("' + hs + '"). Can you narrow the setting?']);
+    }
+    lint.innerHTML = items.map(function (i) { return '<li class="' + i[0] + '">' + esc(i[1]) + '</li>'; }).join('');
+  }
+  Object.keys(f).forEach(function (k) { f[k].addEventListener('input', render); });
+  document.getElementById('preset').addEventListener('change', function () {
+    var p = presets[this.value] || ['', '', ''];
+    f.goal.value = p[0]; f.user.value = p[1]; f.ctx.value = p[2];
+    render();
+  });
+  document.getElementById('clear').addEventListener('click', function () {
+    Object.keys(f).forEach(function (k) { f[k].value = ''; });
+    document.getElementById('preset').value = '';
+    render();
+  });
+  document.getElementById('copy').addEventListener('click', function () {
+    var txt = 'HMW: ' + out.textContent.replace(/\s+/g, ' ').trim() + '\nMain RQ: ' + rqMain.textContent.trim() +
+      '\nSub-RQs:\n' + Array.prototype.map.call(rqSubs.querySelectorAll('li'), function (li) { return '- ' + li.textContent; }).join('\n') +
+      '\nAim: ' + aim.textContent.trim();
+    var msg = document.getElementById('copied');
+    function done() { msg.textContent = 'Copied!'; setTimeout(function () { msg.textContent = ''; }, 1600); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, function () { msg.textContent = 'Copy failed; select the text manually.'; });
+    else msg.textContent = 'Copy not supported; select the text manually.';
+  });
+  render();
+})();
+
+// Fix-this-HMW quiz
+(function () {
+  var OPTS = ['Method baked in', 'Too broad', 'Too narrow', 'Answer baked in', 'Negative framing', 'No user / context', 'Looks good'];
+  var Q = [
+    { s: 'HMW build a CNN-based mobile app to classify skin lesions?', a: 0,
+      why: 'The method (CNN) and the deliverable (mobile app) are fixed before any gap is identified.',
+      fix: 'HMW help primary-care doctors in district hospitals decide which skin lesions need urgent specialist referral, with limited access to dermatologists?' },
+    { s: 'HMW use AI to improve healthcare in Sri Lanka?', a: 1,
+      why: 'A whole research field, not a final year project. No user, no problem, no constraint.',
+      fix: 'HMW help district hospital nurses spot deteriorating patients earlier without adding to their charting workload?' },
+    { s: 'HMW prove that LoRa is better than Zigbee for smart farming?', a: 3,
+      why: 'The conclusion is decided in advance. A comparison can be a valid RQ, but the HMW should start from the farmers\u2019 need.',
+      fix: 'HMW give paddy farmers reliable field-sensor data across scattered plots, with no mains power and minimal maintenance?' },
+    { s: 'HMW tune the learning rate of our LSTM to reach 95% accuracy?', a: 2,
+      why: 'A single tuning task with an arbitrary target. Nothing to discover, and no link to a real need.',
+      fix: 'HMW forecast short-term electricity demand for a university campus accurately enough to schedule backup generators?' },
+    { s: 'HMW prevent hackers from attacking smart homes?', a: 4,
+      why: 'Framed around stopping something, which is vague and impossible to evaluate. Reframe as an opportunity.',
+      fix: 'HMW help households detect and recover from compromised smart devices without needing technical skills?' },
+    { s: 'HMW optimise the network?', a: 5,
+      why: 'Which network, for whom, under what conditions? Without these you can\u2019t define a metric or a baseline.',
+      fix: 'HMW keep campus Wi-Fi responsive for students during lecture-hall peaks, without adding new access points?' },
+    { s: 'HMW keep keyword spotting accurate for Sinhala and Tamil speakers on a microcontroller with only a few hundred KB of RAM?', a: 6,
+      why: 'Specific users, a clear outcome, and a real constraint that points to a research gap. No method baked in.',
+      fix: 'Nothing to fix. Next step: check the literature for the gap, then write RQs.' }
+  ];
+  var root = document.getElementById('quiz'), scoreEl = document.getElementById('score');
+  var answered = 0, correct = 0;
+  function esc(s) { return s.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  Q.forEach(function (q, qi) {
+    var d = document.createElement('div');
+    d.className = 'quiz-q';
+    d.innerHTML = '<div class="n">Statement ' + (qi + 1) + ' of ' + Q.length + '</div>' +
+      '<div class="stmt">' + esc(q.s) + '</div>' +
+      '<div class="opts">' + OPTS.map(function (o, oi) { return '<button type="button" class="opt" data-i="' + oi + '">' + o + '</button>'; }).join('') + '</div>' +
+      '<div class="reveal"><span class="verdict"></span> ' + esc(q.why) +
+      '<span class="fix"><b>Better:</b> ' + esc(q.fix) + '</span></div>';
+    var btns = d.querySelectorAll('.opt');
+    Array.prototype.forEach.call(btns, function (b) {
+      b.addEventListener('click', function () {
+        var pick = +b.getAttribute('data-i');
+        Array.prototype.forEach.call(btns, function (x) { x.disabled = true; });
+        btns[q.a].classList.add('right');
+        var v = d.querySelector('.verdict');
+        if (pick === q.a) { correct++; v.innerHTML = '<b style="color:var(--good)">Correct.</b>'; }
+        else { b.classList.add('wrong'); v.innerHTML = '<b style="color:var(--bad)">Not quite.</b> It&rsquo;s &ldquo;' + OPTS[q.a] + '&rdquo;.'; }
+        d.querySelector('.reveal').classList.add('show');
+        answered++;
+        scoreEl.textContent = 'Score: ' + correct + ' / ' + answered + (answered === Q.length ? (correct === Q.length ? '. Perfect, you are ready for your proposal defence.' : '. Scroll up to review the ones you missed.') : '');
+      });
+    });
+    root.appendChild(d);
+  });
+})();
+
+// Checklist progress
+(function () {
+  var boxes = document.querySelectorAll('#checklist input');
+  var bar = document.getElementById('prog'), txt = document.getElementById('prog-text');
+  function upd() {
+    var n = 0; Array.prototype.forEach.call(boxes, function (b) { if (b.checked) n++; });
+    bar.style.width = (100 * n / boxes.length) + '%';
+    txt.textContent = n + ' of ' + boxes.length + ' checked' + (n === boxes.length ? ' \u00b7 ready for your supervisor meeting!' : '');
+  }
+  Array.prototype.forEach.call(boxes, function (b) { b.addEventListener('change', upd); });
+  upd();
+})();
+</script>
+</body>
+</html>
